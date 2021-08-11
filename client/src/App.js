@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 
 
 import ImageUploader from "./components/ImageUploader";
+import Main from "./components/Main";
 
 
 function App() {
@@ -16,11 +17,15 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Switch>
+
             <Route path="/" exact>
+              <Main />
+            </Route>
+
+            <Route path="/hang" exact>
               <ImageUploader />
             </Route>
 
-           
 
           </Switch>
         </BrowserRouter>
