@@ -8,18 +8,17 @@ import { Redirect } from "react-router-dom"
 import axios from "axios";
 
 
-const ImageUploader = () => {
+const CreateOutfit = () => {
   
     const [imageSelected, setImageSelected] = useState("");
-    const [imageURL, setImageURL] = useState("")
+    const [imageURL, setImageURL] = useState("");
+    const [cloudinaryID, setCloudinaryID] = useState("")
 
     //USEFORM
     const { register, handleSubmit, errors } = useForm();
     
 
-
-
-   const postOutfit = (newPost) => {
+    const postOutfit = (newPost) => {
      fetch("http://localhost:4000/v1/posts/", {
        method: "POST",
        body: JSON.stringify(newPost),
@@ -33,9 +32,6 @@ const ImageUploader = () => {
 
     
     // USE MUTATION
-    // const postOutfit = async (newPost) => 
-    // await (await axios.post("http://localhost:4000/v1/posts/", newPost)).data;
-
     const mutation = useMutation((newPost) => postOutfit(newPost));
     const { isLoadinng, isError, error, isSuccess } = mutation;
 
@@ -58,7 +54,8 @@ const ImageUploader = () => {
       formData
     ).then((response) => {
       console.log("image data", response.data);
-      setImageURL(response.data.secure_url)
+      setImageURL(response.data.secure_url);
+      setCloudinaryID(response.data.public_id);
     });
   };
 
@@ -66,8 +63,8 @@ const ImageUploader = () => {
     <div>
       <h2>Ok let's hang this up.</h2>
       What brand is this from? < br />
-    <form onSubmit={handleSubmit(submitData)}>
-     <input
+      <form onSubmit={handleSubmit(submitData)}>
+      <input
       type="text"
       placeholder="Terrablush"
       {...register("brand", { required: true })}
@@ -86,7 +83,7 @@ const ImageUploader = () => {
       placeholder="Work"
       {...register("occasion", { required: true })}
         /> < br />
-
+  
       <input
         type="file"
         name="image"
@@ -116,4 +113,4 @@ const ImageUploader = () => {
   );
 };
 
-export default ImageUploader;
+export default CreateOutfit;
