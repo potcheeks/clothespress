@@ -50,42 +50,34 @@ router.get("/:id", (req, res) => {
 });
 
 //*======================UPLOAD A POST========================
-router.post("/",  (req,res) => {
-//   console.log("body", req.body)
-//   try {
-//     const fileStr = req.body.data;
-//     const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
-//       upload_preset: "clothespress"
-//     });
-//     console.log(
-//       "Image sent to cloud",
-//       uploadedResponse,
-//       req.body.user_id
-//     );
+router.post("/upload", async (req,res) => {
+  console.log("body", req.body)
+  console.log("imagedata", req.body.data)
+  
+  try {
+    const imageData = req.body.data.previewSource;
+    const uploadedResponse = await cloudinary.uploader.upload(imageData, {
+      upload_preset: "clothespress"
+    });
+    console.log(
+      "SUCCESS IMAGE SENT TO CLOUD!"
+    );
 
-//     // create a new post
-//     let post = new Post({
-//       image_url: uploadedResponse.secure_url,
-//       cloudinary_id: uploadedResponse.public_id,
-//       feelings: req.body.feelings,
-//       brand: req.body.brand,
-//     });
-//     console.log("post is", post)
-//     // pushes the new post in the user's post history
-//     await post.save();
-//     console.log("postid", post._id);
-//   } catch (error) {
-//     console.log("error isssss", error);
-//     res.status(500).json({ err: "Uh oh. Something went wrong" });
-// }
-
-Post.create(req.body, (error, createdPost) => {
-  console.log("body",req.body)
-  if (error) {
-    res.status(400).json({error: error.message})
-  }
-  res.status(200).json(createdPost)
-})
+    // create a new post
+    let post = new Post({
+      image_url: uploadedResponse.secure_url,
+      cloudinary_id: uploadedResponse.public_id,
+      feelings: req.body.feelings,
+      brand: req.body.brand,
+      occasion: req.body.occasion,
+    });
+    console.log("post is", post)
+    await post.save();
+    console.log("postid", post._id);
+  } catch (error) {
+    console.log("error isssss", error);
+    res.status(500).json({ err: "Uh oh. Something went wrong" });
+}
 })
 
 //*========================DELETE BY ID===========================
