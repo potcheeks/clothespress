@@ -51,9 +51,6 @@ router.get("/:id", (req, res) => {
 
 //*======================UPLOAD A POST========================
 router.post("/upload", async (req,res) => {
-  console.log("body", req.body)
-  console.log("imagedata", req.body.data)
-  
   try {
     const imageData = req.body.data.previewSource;
     const uploadedResponse = await cloudinary.uploader.upload(imageData, {
@@ -74,6 +71,7 @@ router.post("/upload", async (req,res) => {
     console.log("post is", post)
     await post.save();
     console.log("postid", post._id);
+    res.status(200).json({ success: "Success"})
   } catch (error) {
     console.log("error isssss", error);
     res.status(500).json({ err: "Uh oh. Something went wrong" });

@@ -5,11 +5,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { Redirect } from "react-router-dom";
-import axios from "axios";
+
 
 const ImageUploader = () => {
   const [imageSelected, setImageSelected] = useState("");
-  const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState("");
 
   // Converting image to string
@@ -32,8 +31,6 @@ const ImageUploader = () => {
 
   const uploadImage = async (newPost) => {
     try {
-      console.log("imagefile", newPost.data);
-      console.log("imageselected", imageSelected);
       await fetch("http://localhost:4000/v1/posts/upload", {
         method: "POST",
         body: JSON.stringify(newPost),
@@ -58,6 +55,14 @@ const ImageUploader = () => {
     mutation.mutate(data);
   };
 
+  if (isSuccess) {
+    return <Redirect to="/" />;
+  }
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
   return (
     <div>
       <h2>Ok let's hang this up.</h2>
@@ -66,6 +71,7 @@ const ImageUploader = () => {
         <input
           type="text"
           placeholder="Terrablush"
+          onChange={capitalizeFirstLetter}
           {...register("brand", { required: true })}
         />{" "}
         <br />
@@ -73,6 +79,7 @@ const ImageUploader = () => {
         <input
           type="text"
           placeholder="Work"
+          onChange={capitalizeFirstLetter}
           {...register("occasion", { required: true })}
         />{" "}
         <br />
@@ -80,6 +87,7 @@ const ImageUploader = () => {
         <input
           type="text"
           placeholder="Confident"
+          onChangeText={text => capitalizeFirstLetter(text)}
           {...register("feelings", { required: true })}
         />{" "}
         <br />
