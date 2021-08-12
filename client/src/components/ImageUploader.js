@@ -12,12 +12,11 @@ const ImageUploader = () => {
   
     const [imageSelected, setImageSelected] = useState("");
     const [imageURL, setImageURL] = useState("")
+    const [cloudinaryID, setCloudinaryID] = useState("")
 
     //USEFORM
     const { register, handleSubmit, errors } = useForm();
     
-
-
 
    const postOutfit = (newPost) => {
      fetch("http://localhost:4000/v1/posts/", {
@@ -43,9 +42,9 @@ const ImageUploader = () => {
       mutation.mutate(data)
     }
    
-    if (isSuccess) {
-      return <Redirect to= "/" />
-    }
+    // if (isSuccess) {
+    //   return <Redirect to= "/" />
+    // }
 
     // SENDING IT TO CLOUDINARY
     const uploadImage = () => {
@@ -59,6 +58,7 @@ const ImageUploader = () => {
     ).then((response) => {
       console.log("image data", response.data);
       setImageURL(response.data.secure_url)
+      setCloudinaryID(response.data.public_id)
     });
   };
 
@@ -76,16 +76,17 @@ const ImageUploader = () => {
       And it's perfect for what occasion? <br />
       <input
       type="text"
-      placeholder="Confident"
-      {...register("feelings", { required: true })}
-        /> < br />
-
-      One word that describes how you feel when you wear it. <br />
-      <input
-      type="text"
       placeholder="Work"
       {...register("occasion", { required: true })}
-        /> < br />
+      /> < br />
+
+      One word that describes how you feel when you wear it. <br />
+      
+      <input
+      type="text"
+      placeholder="Confident"
+      {...register("feelings", { required: true })}
+      /> < br />
 
       <input
         type="file"
@@ -95,21 +96,24 @@ const ImageUploader = () => {
         }}
       />
 
+      <div className="image-uploader" onClick={uploadImage}> upload </div>
+
       <input
-      type="hidden"
-      value="dsdsd"
+      type="text"
+      style= "display :none"
+      value={imageURL}
       {...register("image_url", { required: true })}
         /> < br />
 
       <input
-      type="hidden"
-      value="sdsdsd"
+      type="text"
+      style= "display :none"
+      value={cloudinaryID}
       {...register("cloudinary_id", { required: true })}
         /> < br />  
 
-      <button type="primary" onClick={uploadImage}> Submit Image </button> < br />
-      <input type="submit"
-      value="into the wardrobe you gooooo!" />
+      <br />
+      <button>into the wardrobe you gooooo! </button>      
       
       </form>
     </div>
