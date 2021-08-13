@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 
 import ImageUploader from "./components/ImageUploader";
 import Main from "./components/Main";
+import Wardrobe from "./components/Wardrobe";
 
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
 
             <Route path="/hang" exact>
               <ImageUploader />
+            </Route>
+
+            <Route path="/wardrobe" exact>
+              <Wardrobe />
             </Route>
 
 

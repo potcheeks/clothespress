@@ -20,7 +20,7 @@ const mongodbURI = process.env.MONGODB_URI;
 //* =======================================
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");

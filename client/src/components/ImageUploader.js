@@ -7,8 +7,9 @@ import { useMutation } from "react-query";
 import { Redirect } from "react-router-dom";
 
 
+
 const ImageUploader = () => {
-  const [imageSelected, setImageSelected] = useState("");
+
   const [previewSource, setPreviewSource] = useState("");
 
   // Converting image to string
@@ -49,7 +50,7 @@ const ImageUploader = () => {
 
   // USE MUTATION
   const mutation = useMutation((newPost) => uploadImage(newPost));
-  const { isLoading, isError, error, isSuccess } = mutation;
+  const { isLoading, isError, isSuccess } = mutation;
 
   const submitData = async (data) => {
     mutation.mutate(data);
@@ -58,6 +59,15 @@ const ImageUploader = () => {
   if (isSuccess) {
     return <Redirect to="/" />;
   }
+
+  if (isLoading) {
+    return "Loading...Currently pressing your outfit!";
+  }
+
+  if (isError) {
+    return "Uh oh, your outfit's too ugly.";
+  }
+
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
@@ -87,7 +97,7 @@ const ImageUploader = () => {
         <input
           type="text"
           placeholder="Confident"
-          onChangeText={text => capitalizeFirstLetter(text)}
+          onChange={capitalizeFirstLetter}
           {...register("feelings", { required: true })}
         />{" "}
         <br />

@@ -10,23 +10,23 @@ const session = require("express-session");
 const cloudinary = require("../utils/cloudinary")
 const upload = require("../utils/multer")
 
-// const vision = require("@google-cloud/vision");
-// const client = new vision.ImageAnnotatorClient({
-//   keyFilename: "./cloudAPIKey.json",
-// });
+const vision = require("@google-cloud/vision");
+const client = new vision.ImageAnnotatorClient({
+  keyFilename: "./cloudAPIKey.json",
+});
 
-// const imageURL = "https://terrablush.com/w-ebase-uploads/2020/12/TerraBlush_ECommerce-94-1920x2880.jpg"
-// client
-// .imageProperties(imageURL)
-// .then((results) => {
-//   const colors = results[0].imagePropertiesAnnotation.dominantColors.colors;
+const imageURL = "https://terrablush.com/w-ebase-uploads/2020/12/TerraBlush_ECommerce-94-1920x2880.jpg"
+client
+.imageProperties(imageURL)
+.then((results) => {
+  const colors = results[0].imagePropertiesAnnotation.dominantColors.colors;
 
-//   console.log("Colours:");
-//   colors.forEach(color => console.log(color));
-// })
-// .catch((err) => {
-//   console.error("ERROR:", err);
-// });
+  console.log("Colours:");
+  colors.forEach(color => console.log(color));
+})
+.catch((err) => {
+  console.error("ERROR:", err);
+});
 
 //*=====================SHOW ALL THE POSTS=======================
 router.get("/", (req, res) => {
@@ -54,7 +54,8 @@ router.post("/upload", async (req,res) => {
   try {
     const imageData = req.body.data.previewSource;
     const uploadedResponse = await cloudinary.uploader.upload(imageData, {
-      upload_preset: "clothespress"
+      upload_preset: "clothespress",
+      width: 1280, height: 720, crop: "limit",
     });
     console.log(
       "SUCCESS IMAGE SENT TO CLOUD!"
