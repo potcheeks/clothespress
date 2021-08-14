@@ -1,36 +1,29 @@
 import React from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 
+import "./Wardrobe.css";
 
 const Wardrobe = () => {
-
-
   const { data, error, isLoading } = useQuery("outfitQuery", () =>
-    axios("http://localhost:4000/v1/posts")
+    axios("/v1/posts")
   );
   const outfitPosts = data?.data;
   console.log("outfitposts", outfitPosts);
 
-  // const { data: colours } = useQuery("outfitColour", () => 
-  // axios("https://process.env.CLOUDINARY_API_KEY:process.env.CLOUDINARY_API_SECRET@api.cloudinary.com/v1_1/process.env.CLOUDINARY_CLOUD_NAME/resources/image")
-  // );
-  // const outfitColoursData = colours?.data
-  // console.log("outfitdata", outfitColoursData);
-
- 
-
   return (
-    <div className="container">
-       {outfitPosts?.map((post) => (
+    <>
+    <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center py-8">your clothespress</h1>
+    <div class="grid grid-cols-3 grid-flow-row gap-8">
+      {outfitPosts?.map((post) => (
         <>
-              <img src={post?.image_url} />
+          <div className="wardrobecontainer">
+            <img src={post?.image_url} />
+          </div>
         </>
-      ))} 
-   
+      ))}
     </div>
+    </>
   );
 };
 

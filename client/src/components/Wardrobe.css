@@ -1,0 +1,23 @@
+img {
+  width: 75%;
+  height: 100%;
+  object-fit:cover;
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  /* -webkit-box-reflect:below 2px linear-gradient(transparent, transparent, #0004); */
+  
+  transform-origin:center;
+  transform:perspective(800px) rotateY(0deg);
+  transition:0.5s;
+}
+
+.wardrobecontainer:hover img {
+  opacity:0.3;
+}
+.wardrobecontainer img:hover {
+  transform:perspective(800px)       rotateY(25deg);
+  opacity:1;
+} 
+ 

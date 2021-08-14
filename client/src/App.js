@@ -1,43 +1,35 @@
 import React from "react";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
-
-
+import Navbar from "./components/Navbar";
 import ImageUploader from "./components/ImageUploader";
 import Main from "./components/Main";
 import Wardrobe from "./components/Wardrobe";
-
 
 function App() {
   const queryClient = new QueryClient();
 
   return (
-    <main className="App">
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Switch>
+    <QueryClientProvider client={queryClient}>
+      <Navbar />
+      <Switch>
+        <Route path="/" exact>
+          <Main />
+        </Route>
 
-            <Route path="/" exact>
-              <Main />
-            </Route>
+        <Route path="/hang" exact>
+          <ImageUploader />
+        </Route>
 
-            <Route path="/hang" exact>
-              <ImageUploader />
-            </Route>
+        <Route path="/wardrobe" exact>
+          <Wardrobe />
+        </Route>
+      </Switch>
 
-            <Route path="/wardrobe" exact>
-              <Wardrobe />
-            </Route>
-
-
-          </Switch>
-        </BrowserRouter>
-
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </main>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 

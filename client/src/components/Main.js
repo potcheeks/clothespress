@@ -2,23 +2,9 @@ import React from 'react'
 
 const Main = () => {
   return (
-    <div class="container">
-      <h1>sign in</h1>
-      <form action="#" class="formulaire">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" value=""/>
-      <label for="Password">Password</label>
-      <input type="Password" id="Password" name="Password" value=""></input>
-      <p>forgot password?</p>
-      <button class="btn">sign in</button>
-      <div class="social">
-       <span>sign up or sign in with</span>
-       <i class="fab fa-snapchat-ghost"></i>
-      <i class="fab fa-twitter"></i>
-     <i class="fab fa-facebook"></i>
-            
-          </div>
-      </form>
+    <div className="bg-white h-screen flex flex-col justify-center items-center">
+     <h1 className="lg:text-9xl md:text-7xl sm:text-5xl text-3xl font-serif mb-14">clothes(ex)press</h1>
+     <p className="lg:text-5xl md:text3xl sm:text-xl text-base font-mono mb-14">All your clothes at one glance</p>
     </div>
          
   )
