@@ -56,7 +56,7 @@ const SignIn = () => {
         </h1>
         <div class="grid grid-flow-col grid-cols-2">
           <div class="flex">
-            <img src="https://images.unsplash.com/photo-1531347058246-6dfef49b7b7b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=800" />
+            <img src="https://i.pinimg.com/564x/74/cf/9f/74cf9fb9f7cf9e1fa6bee5e2efeefc4a.jpg" />
           </div>
           <div class="flex">
             <form onSubmit={handleSubmit(submitData)}>
