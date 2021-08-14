@@ -8,6 +8,9 @@ import ImageUploader from "./components/ImageUploader";
 import Main from "./components/Main";
 import Wardrobe from "./components/Wardrobe";
 
+import CreateAccount from "./components/account/CreateAccount";
+import SignIn from "./components/account/SignIn"
+
 function App() {
   const queryClient = new QueryClient();
 
@@ -26,6 +29,15 @@ function App() {
         <Route path="/wardrobe" exact>
           <Wardrobe />
         </Route>
+
+        <Route path="/signup" exact>
+          <CreateAccount />
+        </Route>
+
+        <Route path="/login" exact>
+          <SignIn />
+        </Route>
+
       </Switch>
 
       <ReactQueryDevtools initialIsOpen={false} />
