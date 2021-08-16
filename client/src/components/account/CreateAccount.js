@@ -4,47 +4,53 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { Redirect } from "react-router-dom";
 
-const CreateAccount = () => {
+const CreateAccount = ({loginUser, setLoginUser}) => {
   //USEFORM
   const { register, handleSubmit } = useForm();
 
-  const uploadUser = async (newPost) => {
+  const uploadUser = async (newUser) => {
     try {
       await fetch("http://localhost:4000/v1/users", {
         method: "POST",
-        body: JSON.stringify(newPost),
+        body: JSON.stringify(newUser),
         headers: {
           "Content-Type": "application/json",
         },
       }).then((res) => {
-        console.log("Post submitted", res.data);
+        console.log("Account created", res.data);
       });
     } catch (err) {
       console.error(err);
     }
   };
 
-    // USE MUTATION
-    const mutation = useMutation((newUser) => uploadUser(newUser));
-    const { isLoading, isError, isSuccess } = mutation;
-  
-    const submitData = async (data) => {
-      mutation.mutate(data);
-    };
-  
-    if (isSuccess) {
-      return <Redirect to="/wardrobe" />;
-    }
-  
-    if (isLoading) {
-      return "Loading...Getting you your exclusive pass";
-    }
-  
-    if (isError) {
-      return "Uh oh, your outfit's too ugly.";
-    }
+  // USE MUTATION
+  const mutation = useMutation((newUser) => uploadUser(newUser));
+  const { isLoading, isError, isSuccess } = mutation;
 
-    
+  const submitData = async (data) => {
+    mutation.mutate(data);
+  };
+
+  if (isSuccess) {
+    return <Redirect to="/wardrobe" />;
+  }
+
+  if (isLoading) {
+    return (
+      <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
+        "Loading...Getting you your exclusive pass"
+      </p>
+    );
+  }
+
+  // if (isError) {
+  //   return (
+  //     <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
+  //       {error}
+  //     </p>
+  //   );
+  // }
 
   return (
     <>

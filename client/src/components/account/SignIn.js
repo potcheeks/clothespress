@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 
 import { useForm } from "react-hook-form";
@@ -6,47 +6,54 @@ import { useMutation } from "react-query";
 import { Redirect } from "react-router-dom";
 
 
-const SignIn = () => {
+const SignIn = ({setLoginUser, loginUser}) => {
 
   const { register, handleSubmit } = useForm();
 
-  const uploadUser = async (newUser) => {
+  
+
+  const handleLogin = async (newUser) => {
     try {
-      await fetch("http://localhost:4000/v1/users", {
+      await fetch("http://localhost:4000/v1/sessions", {
         method: "POST",
         body: JSON.stringify(newUser),
         headers: {
           "Content-Type": "application/json",
         },
       }).then((res) => {
-        console.log("Post submitted", res.data);
-      });
+        return res.json();
+      }).then((data) => {
+        setLoginUser(data)
+        console.log("userID",data)
+      })
     } catch (err) {
       console.error(err);
     }
   };
 
+  
       // USE MUTATION
-      const mutation = useMutation((newUser) => uploadUser(newUser));
+      const mutation = useMutation((newUser) => handleLogin(newUser));
       const { isLoading, isError, isSuccess } = mutation;
     
       const submitData = async (data) => {
         mutation.mutate(data);
       };
     
-      if (isSuccess) {
-        return <Redirect to="/wardrobe" />;
-      }
+      // if (isSuccess) {
+      //   return <Redirect to="/wardrobe" />;
+      // }
     
       if (isLoading) {
         return "Loading...Getting you your exclusive pass";
       }
     
       if (isError) {
-        return "Uh oh, your outfit's too ugly.";
-      }
+        return "Sorry! Please create an account wiht us"}
 
-      
+    console.log("loginUser", loginUser)  
+
+
   return (
   
        <>

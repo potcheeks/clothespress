@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { Redirect } from "react-router-dom";
 
-const ImageUploader = () => {
+const ImageUploader = ({loginUser}) => {
   const [previewSource, setPreviewSource] = useState("");
 
   // Converting image to string
@@ -29,6 +29,7 @@ const ImageUploader = () => {
 
   const uploadImage = async (newPost) => {
     try {
+      console.log(newPost)
       await fetch("http://localhost:4000/v1/posts/upload", {
         method: "POST",
         body: JSON.stringify(newPost),
@@ -65,6 +66,7 @@ const ImageUploader = () => {
     return "Uh oh, your outfit's too ugly.";
   }
 
+  console.log("loginUser from imageuploader", loginUser)
 
   return (
     <div>
@@ -104,6 +106,11 @@ const ImageUploader = () => {
             <input 
             class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
             type="file" onChange={handleFileInputChange} />
+            <input 
+            class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
+            type="hidden"
+            {...register("userID", { value: loginUser._id })}
+             />
             <br />
             <br />
             <br />
