@@ -15,7 +15,6 @@ const Colours = (loginUser) => {
     return { colour: post.colour, id: post._id };
   });
 
-
   return (
     <div>
       <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center pt-8">
@@ -26,18 +25,19 @@ const Colours = (loginUser) => {
         green is the colour of your energy, white is blanc but blank you might
         not be.{" "}
       </p>
-      <div class="grid grid-cols-5 grid-flow-row gap-8">
+      <div class="grid grid-cols-6 grid-flow-row gap-8">
         {rgbArray?.map((colour) => (
-          <a href={`/wardrobe/${colour._id}`}>
-            <div
-              style={{
-                backgroundColor: `rgb(${colour.colour.red}, ${colour.colour.green}, ${colour.colour.blue})`,
-                height: "200px",
-                width: "200px",
-              }}
-              class="justify-self-center"
-            ></div>
-          </a>
+          <div class="justify-self-center">
+            <a href={`/wardrobe/${colour._id}`}>
+              <div
+                style={{
+                  backgroundColor: `rgb(${colour.colour.red}, ${colour.colour.green}, ${colour.colour.blue})`,
+                  height: "200px",
+                  width: "200px",
+                }}
+              ></div>
+            </a>
+          </div>
         ))}
       </div>
     </div>
@@ -45,5 +45,9 @@ const Colours = (loginUser) => {
 };
 
 export default Colours;
-{/* <a href={`/wardrobe/${photo._id}`}></a> */}
-{/* <Link to={`wardrobe/${colour.id}`}></Link> */}
+{
+  /* <a href={`/wardrobe/${photo._id}`}></a> */
+}
+{
+  /* <Link to={`wardrobe/${colour.id}`}></Link> */
+}
