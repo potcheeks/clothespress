@@ -13,6 +13,8 @@ import CreateAccount from "./components/account/CreateAccount";
 import SignIn from "./components/account/SignIn";
 
 import Colours from "./components/selection/Colours"
+import Outfit from "./components/selection/Outfit"
+import Dropdown from "./components/selection/Dropdown"
 
 function App() {
   const queryClient = new QueryClient();
@@ -43,6 +45,11 @@ function App() {
           <Wardrobe loginUser={loginUser}/>
         </Route>
 
+        <Route path="/wardrobe/:postid" exact>
+          <Outfit />
+        </Route>
+
+
         <Route path="/signup" exact>
           <CreateAccount loginUser={loginUser} setLoginUser={setLoginUser} />
         </Route>
@@ -54,6 +61,13 @@ function App() {
         <Route path="/style" exact>
           <Colours />
         </Route>
+
+        <Route path="/randomizer" exact>
+          <Dropdown />
+        </Route>
+
+
+      
 
       </Switch>
 

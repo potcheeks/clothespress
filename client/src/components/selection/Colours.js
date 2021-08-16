@@ -1,5 +1,6 @@
-import { useQuery, QueryCache, QueryClient, QueryObserver } from "react-query";
+import { useQuery } from "react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Colours = (loginUser) => {
   const { data, error, isLoading } = useQuery("outfitQuery", () =>
@@ -15,6 +16,10 @@ const Colours = (loginUser) => {
   });
   console.log("coloursobject", rgbArray);
 
+  // const handleRoute = () => {
+  //   history.push(`/wardrobe/${colour.id}`)
+  // }
+
   return (
     <div>
       <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center pt-8">
@@ -27,15 +32,16 @@ const Colours = (loginUser) => {
       </p>
       <div class="grid grid-cols-5 grid-flow-row gap-8">
         {rgbArray?.map((colour) => (
-          <div 
-          style={{
-            backgroundColor: `rgb(${colour.colour.red}, ${colour.colour.green}, ${colour.colour.blue})`,
-            height: '200px',
-            width: '200px',
-          }}
-          class="justify-self-center "
-          >
-            </div>
+          <Link to={`wardrobe/${colour.id}`}>
+            <div
+              style={{
+                backgroundColor: `rgb(${colour.colour.red}, ${colour.colour.green}, ${colour.colour.blue})`,
+                height: "200px",
+                width: "200px",
+              }}
+              class="justify-self-center"
+            ></div>
+          </Link>
         ))}
       </div>
     </div>
