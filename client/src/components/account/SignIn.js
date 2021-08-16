@@ -24,7 +24,7 @@ const SignIn = ({setLoginUser, loginUser}) => {
         return res.json();
       }).then((data) => {
         setLoginUser(data)
-        console.log("userID",data)
+        console.log("userID logged in this is data",data)
       })
     } catch (err) {
       console.error(err);
@@ -40,9 +40,9 @@ const SignIn = ({setLoginUser, loginUser}) => {
         mutation.mutate(data);
       };
     
-      // if (isSuccess) {
-      //   return <Redirect to="/wardrobe" />;
-      // }
+      if (isSuccess) {
+        return <Redirect to="/wardrobe" />;
+      }
     
       if (isLoading) {
         return "Loading...Getting you your exclusive pass";

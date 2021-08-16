@@ -12,6 +12,8 @@ import Wardrobe from "./components/Wardrobe";
 import CreateAccount from "./components/account/CreateAccount";
 import SignIn from "./components/account/SignIn";
 
+import Colours from "./components/selection/Colours"
+
 function App() {
   const queryClient = new QueryClient();
   const [loginUser, setLoginUser] = useState();
@@ -38,7 +40,7 @@ function App() {
         </Route>
 
         <Route path="/wardrobe" exact>
-          <Wardrobe />
+          <Wardrobe loginUser={loginUser}/>
         </Route>
 
         <Route path="/signup" exact>
@@ -48,6 +50,11 @@ function App() {
         <Route path="/login" exact>
           <SignIn setLoginUser={setLoginUser} loginUser={loginUser} />
         </Route>
+
+        <Route path="/style" exact>
+          <Colours />
+        </Route>
+
       </Switch>
 
       <ReactQueryDevtools initialIsOpen={false} />
