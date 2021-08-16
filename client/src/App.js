@@ -14,7 +14,8 @@ import SignIn from "./components/account/SignIn";
 
 import Colours from "./components/selection/Colours"
 import Outfit from "./components/selection/Outfit"
-import Dropdown from "./components/selection/Dropdown"
+import Feelings from "./components/selection/Feelings"
+import Occasion from "./components/selection/Occasion"
 
 function App() {
   const queryClient = new QueryClient();
@@ -41,14 +42,6 @@ function App() {
           <ImageUploader loginUser={loginUser} />
         </Route>
 
-        <Route path="/wardrobe" exact>
-          <Wardrobe loginUser={loginUser}/>
-        </Route>
-
-        <Route path="/wardrobe/:postid" exact>
-          <Outfit />
-        </Route>
-
 
         <Route path="/signup" exact>
           <CreateAccount loginUser={loginUser} setLoginUser={setLoginUser} />
@@ -58,14 +51,26 @@ function App() {
           <SignIn setLoginUser={setLoginUser} loginUser={loginUser} />
         </Route>
 
-        <Route path="/style" exact>
+        <Route path="/colour" exact>
           <Colours />
         </Route>
 
-        <Route path="/randomizer" exact>
-          <Dropdown />
+        <Route path="/feelings" exact>
+          <Feelings loginUser={loginUser}/>
         </Route>
 
+        <Route path="/occasion" exact>
+          <Occasion loginUser={loginUser}/>
+        </Route>
+
+
+        <Route path="/wardrobe" exact>
+          <Wardrobe loginUser={loginUser}/>
+        </Route>
+
+        <Route path="/wardrobe/:postid" exact>
+          <Outfit />
+        </Route>
 
       
 

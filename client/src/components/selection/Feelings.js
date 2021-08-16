@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 
@@ -11,19 +11,31 @@ const Dropdown = (loginUser) => {
 
   const userData = data?.data;
   const postHistory = userData?.posts_history;
-  const feelings = uniq(postHistory?.map((post) => post.feelings));
-  const occasion = uniq(postHistory?.map((post) => post.occasion));
-  console.log("feelings", feelings);
-  console.log("occasions", occasion);
 
-  // unique 
+  const feelings = uniq(
+    postHistory
+      ?.map((post) => post.feelings)
+      ?.sort((a, b) => a.localeCompare(b, { ignorePunctuation: true }))
+  );
+
+ 
+  // unique
   function uniq(a) {
     return a.sort().filter(function (item, pos, ary) {
       return !pos || item != ary[pos - 1];
     });
   }
 
-  // console.log(uniq(feelings));
+  const [selectFeelings, setSelectFeelings] = useState();
+  const handleChangeFeelings = (e) => {
+    e.preventDefault();
+    setSelectFeelings(e.target.value);
+  };
+
+  const photoArray = postHistory.filter(
+    (item) => item.feelings === selectFeelings
+  );
+
 
   return (
     <div>
@@ -34,7 +46,7 @@ const Dropdown = (loginUser) => {
         good morning {userData?.username}, and how are you feeling today?
       </p>
 
-      <div class="relative inline-flex">
+      <div class="flex flex-col justify-center items-center">
         <svg
           class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
           xmlns="http://www.w3.org/2000/svg"
@@ -46,17 +58,22 @@ const Dropdown = (loginUser) => {
             fill-rule="nonzero"
           />
         </svg>
-        <select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-          <option>Feelings, ugh what are they?</option>
-          <option>Red</option>
-          <option>Blue</option>
-          <option>Yellow</option>
-          <option>Black</option>
-          <option>Orange</option>
-          <option>Purple</option>
-          <option>Gray</option>
-          <option>White</option>
+        <select
+          class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none text-lg font-serif"
+          onChange={handleChangeFeelings}
+        >
+          <option>Ugh feelings, what are they?</option>
+          {feelings?.map((item) => {
+            return <option value={item}>{item}</option>;
+          })}
         </select>
+      </div>
+      <div class="grid grid-cols-3 grid-flow-row gap-8">
+      {photoArray?.map((photo) => (
+        <div className="container">
+          <a href={`/wardrobe/${photo._id}`}><img src={photo.image_url} /></a>
+        </div>
+      ))}
       </div>
     </div>
   );

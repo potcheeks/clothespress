@@ -14,11 +14,7 @@ const Colours = (loginUser) => {
   const rgbArray = postHistory?.map((post) => {
     return { colour: post.colour, id: post._id };
   });
-  console.log("coloursobject", rgbArray);
 
-  // const handleRoute = () => {
-  //   history.push(`/wardrobe/${colour.id}`)
-  // }
 
   return (
     <div>
@@ -32,7 +28,7 @@ const Colours = (loginUser) => {
       </p>
       <div class="grid grid-cols-5 grid-flow-row gap-8">
         {rgbArray?.map((colour) => (
-          <Link to={`wardrobe/${colour.id}`}>
+          <a href={`/wardrobe/${colour._id}`}>
             <div
               style={{
                 backgroundColor: `rgb(${colour.colour.red}, ${colour.colour.green}, ${colour.colour.blue})`,
@@ -41,7 +37,7 @@ const Colours = (loginUser) => {
               }}
               class="justify-self-center"
             ></div>
-          </Link>
+          </a>
         ))}
       </div>
     </div>
@@ -49,3 +45,5 @@ const Colours = (loginUser) => {
 };
 
 export default Colours;
+{/* <a href={`/wardrobe/${photo._id}`}></a> */}
+{/* <Link to={`wardrobe/${colour.id}`}></Link> */}

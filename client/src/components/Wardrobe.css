@@ -6,18 +6,23 @@ img {
   margin-left: auto;
   margin-right: auto;
   
-  /* -webkit-box-reflect:below 2px linear-gradient(transparent, transparent, #0004); */
+  -webkit-box-reflect:below 2px linear-gradient(transparent, transparent, #0004);
   
   transform-origin:center;
-  transform:perspective(800px) rotateY(0deg);
+  transform:perspective(800px) rotateY(25deg);
   transition:0.5s;
 }
-
+.wardrobecontainer {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  
+}
 .wardrobecontainer:hover img {
   opacity:0.3;
 }
 .wardrobecontainer img:hover {
-  transform:perspective(800px)       rotateY(25deg);
+  transform:perspective(800px)       rotateY(0deg);
   opacity:1;
-} 
- 
+}

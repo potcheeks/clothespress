@@ -36,7 +36,7 @@ const Outfit = () => {
         <p class="lg:text-xl md:textxl sm:text-xl text-base font-serif mb-14 text-left lowercase max-w-lg pt-40">
         "You bought this delightful piece from {outfitData?.brand}, and whenever you wear her you
         feel absolutely {outfitData?.feelings}. An occasion to wear her out to? 
-        Mmmm... {outfitData?.occasion} perhaps?""
+        Mmmm... {outfitData?.occasion} perhaps?"
         </p>
         <button class="lg:text-xl md:textxl sm:text-xl text-base font-serif mb-14 lowercase max-w-lg pt-40"> // edit</button>
       </div>
