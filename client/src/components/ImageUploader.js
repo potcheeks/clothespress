@@ -30,7 +30,7 @@ const ImageUploader = ({loginUser}) => {
   const uploadImage = async (newPost) => {
     try {
       console.log(newPost)
-      await fetch("http://localhost:4000/v1/posts/upload", {
+      await fetch("v1/posts/upload", {
         method: "POST",
         body: JSON.stringify(newPost),
         headers: {

@@ -14,7 +14,7 @@ const SignIn = ({setLoginUser, loginUser}) => {
 
   const handleLogin = async (newUser) => {
     try {
-      await fetch("http://localhost:4000/v1/sessions", {
+      await fetch("/v1/sessions", {
         method: "POST",
         body: JSON.stringify(newUser),
         headers: {

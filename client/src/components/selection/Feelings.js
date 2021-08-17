@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 
+import "./Feelings.css";
+
 const Dropdown = (loginUser) => {
   const { data, error, isLoading } = useQuery("outfitQuery", () =>
     axios(`/v1/users/${loginUserID}`)
@@ -20,8 +22,8 @@ const Dropdown = (loginUser) => {
 
  
   // unique
-  function uniq(a) {
-    return a.sort().filter(function (item, pos, ary) {
+  function uniq(post) {
+    return post.sort().filter(function (item, pos, ary) {
       return !pos || item != ary[pos - 1];
     });
   }
@@ -71,7 +73,7 @@ const Dropdown = (loginUser) => {
       <div class="grid grid-cols-3 grid-flow-row gap-8">
       {photoArray?.map((photo) => (
         <div className="container">
-          <a href={`/wardrobe/${photo._id}`}><img src={photo.image_url} /></a>
+          <a href={`/wardrobe/${photo._id}`}><img className="feelingsimage" src={photo.image_url} /></a>
         </div>
       ))}
       </div>

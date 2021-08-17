@@ -12,10 +12,13 @@ import Wardrobe from "./components/Wardrobe";
 import CreateAccount from "./components/account/CreateAccount";
 import SignIn from "./components/account/SignIn";
 
+import EditOutfitForm from "./components/EditOutfitForm"
+
 import Colours from "./components/selection/Colours"
 import Outfit from "./components/selection/Outfit"
 import Feelings from "./components/selection/Feelings"
 import Occasion from "./components/selection/Occasion"
+
 
 function App() {
   const queryClient = new QueryClient();
@@ -52,7 +55,7 @@ function App() {
         </Route>
 
         <Route path="/colour" exact>
-          <Colours />
+          <Colours loginUser={loginUser}/>
         </Route>
 
         <Route path="/feelings" exact>
@@ -69,10 +72,12 @@ function App() {
         </Route>
 
         <Route path="/wardrobe/:postid" exact>
-          <Outfit />
+          <Outfit loginUser={loginUser}/>
         </Route>
 
-      
+        <Route path="/wardrobe/edit/:postid" exact>
+          <EditOutfitForm loginUser={loginUser}/>
+        </Route>
 
       </Switch>
 

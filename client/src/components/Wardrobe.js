@@ -29,7 +29,9 @@ const Wardrobe = ({ loginUser }) => {
         {outfitPosts?.map((post) => (
           <>
             <div className="wardrobecontainer">
-              <img src={post?.image_url} />
+              <img 
+              className="wardrobeoutfit"
+              src={post?.image_url} />
             </div>
           </>
         ))}

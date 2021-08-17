@@ -28,7 +28,7 @@ const Colours = (loginUser) => {
       <div class="grid grid-cols-6 grid-flow-row gap-8">
         {rgbArray?.map((colour) => (
           <div class="justify-self-center">
-            <a href={`/wardrobe/${colour._id}`}>
+            <a href={`wardrobe/${colour.id}`}>
               <div
                 style={{
                   backgroundColor: `rgb(${colour.colour.red}, ${colour.colour.green}, ${colour.colour.blue})`,

@@ -1,11 +1,8 @@
-import React from "react";
+import React from 'react'
 
-import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import { Redirect } from "react-router-dom";
+const EditAccount = () => {
 
-const CreateAccount = ({loginUser, setLoginUser}) => {
-  //USEFORM
+
   const { register, handleSubmit } = useForm();
 
   const uploadUser = async (newUser) => {
@@ -24,38 +21,29 @@ const CreateAccount = ({loginUser, setLoginUser}) => {
     }
   };
 
-  // USE MUTATION
-  const mutation = useMutation((newUser) => uploadUser(newUser));
-  const { isLoading, isError, isSuccess } = mutation;
+// USE MUTATION
+const mutation = useMutation((newUser) => uploadUser(newUser));
+const { isLoading, isError, isSuccess } = mutation;
 
-  const submitData = async (data) => {
-    mutation.mutate(data);
-  };
+const submitData = async (data) => {
+  mutation.mutate(data);
+};
 
-  if (isSuccess) {
-    return <Redirect to="/wardrobe" />;
-  }
+if (isSuccess) {
+  return <Redirect to="/wardrobe" />;
+}
 
-  if (isLoading) {
-    return (
-      <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
-        "Loading...Getting you your exclusive pass"
-      </p>
-    );
-  }
-
-  // if (isError) {
-  //   return (
-  //     <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
-  //       {error}
-  //     </p>
-  //   );
-  // }
+if (isLoading) {
+  return (
+    <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
+      "Loading...Getting you your exclusive pass"
+    </p>
+  );
+}
 
   return (
-    <>
-      <div>
-        <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center py-8">
+    <div>
+      <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center py-8">
           create an account
         </h1>
         <div class="grid grid-flow-col grid-cols-2">
@@ -104,10 +92,9 @@ const CreateAccount = ({loginUser, setLoginUser}) => {
               </button>
             </form>
           </div>
-        </div>
-      </div>
-    </>
-  );
-};
+          </div>
+    </div>
+  )
+}
 
-export default CreateAccount;
+export default EditAccount

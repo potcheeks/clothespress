@@ -7,14 +7,15 @@ import { useParams } from "react-router-dom";
 import "./Outfit.css";
 
 const Outfit = () => {
-  const { data, error, isLoading } = useQuery("singleOutfitQuery", () =>
+  const { postid } = useParams();
+  
+  const { data, error, isLoading } = useQuery(["singleOutfitQuery", postid], () =>
     axios(`/v1/posts/${postid}`)
   );
-  const { postid } = useParams();
+  
 
 
   const outfitData = data?.data;
-  console.log(outfitData)
 
   return (
     <div>
@@ -27,6 +28,7 @@ const Outfit = () => {
       <div class="grid grid-cols-2 grid-flow-row">
       <div className="container">
         <img
+        className="outfitimage"
           src={outfitData?.image_url}
           alt=""
         />
@@ -38,7 +40,10 @@ const Outfit = () => {
         feel absolutely {outfitData?.feelings}. An occasion to wear her out to? 
         Mmmm... {outfitData?.occasion} perhaps?"
         </p>
+        <a href={`/wardrobe/edit/${postid}`}>
         <button class="lg:text-xl md:textxl sm:text-xl text-base font-serif mb-14 lowercase max-w-lg pt-40"> // edit</button>
+        </a>
+       
       </div>
       </div>
       
