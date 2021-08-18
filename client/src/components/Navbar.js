@@ -51,7 +51,7 @@ console.log("loginsuer on nav", loginUser)
       </div>
 
       <div className="p-8 md:block hidden">
-        {loginUser !== undefined ? (
+        {navBar !== undefined ? (
           <>
             <Link className="p-4" to="/hang">
               Hang
