@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 import axios from "axios";
 
-const EditOutfitForm = ({loginUser}) => {
+const EditOutfitForm = ({ loginUser }) => {
   const { postid } = useParams();
-
+  let history = useHistory();
 
   //Getting data from backend for previous values
   const { data, error, isLoading, onSuccess } = useQuery(
@@ -45,6 +45,18 @@ const EditOutfitForm = ({loginUser}) => {
     }
   };
 
+  const handleDelete = (event) => {
+    event.preventDefault();
+    fetch(`/v1/posts/${postid}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }); 
+    console.log("delete button works")
+    history.push("/wardrobe");
+  };
+
   // USE MUTATION
   const mutation = useMutation((newPost) => editPost(newPost));
   const { isError, isSuccess } = mutation;
@@ -54,7 +66,7 @@ const EditOutfitForm = ({loginUser}) => {
   };
 
   if (isSuccess) {
-    return <Redirect to = {`/wardrobe/${postid}`}/>
+    return <Redirect to={`/wardrobe/${postid}`} />;
   }
 
   return (
@@ -92,10 +104,7 @@ const EditOutfitForm = ({loginUser}) => {
             <br />
             <br />
             <br />
-            <button
-              
-              class="inline-flex items-center px-3 py-2 font-serif rounded px-4 py-2 leading-5 bg-black text-primary-100 text-white hover:text-white hover:bg-green-700"
-            >
+            <button class="inline-flex items-center px-3 py-2 font-serif rounded px-4 py-2 leading-5 bg-black text-primary-100 text-white hover:text-white hover:bg-green-700">
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -113,9 +122,33 @@ const EditOutfitForm = ({loginUser}) => {
               Edit outfit
             </button>
           </form>
+         
+          
         </div>
         <div>
           <img src={data?.data?.image_url} alt="chosen" />
+          <div class="justify-items-center">
+          <button
+            onClick={handleDelete}
+            class="inline-flex items-center px-3 py-2 font-serif rounded px-4 py-2 leading-5 bg-white text-primary-100 text-black"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+            neh, delete this.
+          </button>
+          </div>
         </div>
       </div>
     </div>

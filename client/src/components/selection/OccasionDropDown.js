@@ -25,11 +25,6 @@ const OccasionDropDown = ({ loginUser }) => {
       ?.sort((a, b) => a.localeCompare(b, { ignorePunctuation: true }))
   );
 
-  // console.log("logindatafrom occasions", loginUser);
-
-  // console.log("posthistoryfromoccasions", postHistory);
-
-  // console.log("from occasions", occasion);
 
   // unique
   function uniq(post) {
@@ -54,7 +49,7 @@ const OccasionDropDown = ({ loginUser }) => {
         SOS Style, let's help.
       </h1>
       <p class="lg:text-2xl md:text1xl sm:text-xl text-base font-serif mb-14 text-center">
-        hey {loginUser?.username}, and where are you going today? let's get you
+        hey {loginUser?.username}, where are you going today? let's get you
         dressed up.
       </p>
       <div class="flex flex-col justify-center items-center">
