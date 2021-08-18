@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 
 import axios from "axios";
 
-const EditOutfitForm = () => {
+const EditOutfitForm = ({loginUser}) => {
   const { postid } = useParams();
 
 
@@ -93,7 +93,7 @@ const EditOutfitForm = () => {
             <br />
             <br />
             <button
-              // onClick={() => setValue("data", { previewSource })}
+              
               class="inline-flex items-center px-3 py-2 font-serif rounded px-4 py-2 leading-5 bg-black text-primary-100 text-white hover:text-white hover:bg-green-700"
             >
               <svg

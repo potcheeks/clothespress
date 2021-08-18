@@ -6,7 +6,7 @@ import { useMutation } from "react-query";
 import { Redirect } from "react-router-dom";
 
 
-const SignIn = ({setLoginUser, loginUser}) => {
+const SignIn = ({setLoginUser, loginUser, setNavBar, navBar}) => {
 
   const { register, handleSubmit } = useForm();
 
@@ -24,7 +24,7 @@ const SignIn = ({setLoginUser, loginUser}) => {
         return res.json();
       }).then((data) => {
         setLoginUser(data)
-        console.log("data from LoginUser",data)
+        setNavBar(data)
       })
     } catch (err) {
       console.error(err);

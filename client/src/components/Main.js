@@ -2,7 +2,9 @@ import React from "react";
 
 import "./Main.css";
 
-const Main = () => {
+const Main = ({loginUser}) => {
+
+  console.log("loginuseronmain",loginUser)
   return (
     <div className="bg-white h-screen flex flex-col justify-center items-center bg-fa-img">
       <div class="container">

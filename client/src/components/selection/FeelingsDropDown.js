@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import "./FeelingsDropDown.css";
 
-const FeelingsDropDown = ({loginUser}) => {
+const FeelingsDropDown = ({ loginUser }) => {
   const loginUserID = loginUser?._id;
   const [postHistory, setPostHistory] = useState([]);
 
@@ -20,17 +21,17 @@ const FeelingsDropDown = ({loginUser}) => {
 
   const feelings = uniq(
     postHistory
-      ?.map((post) => post.feelings)
+      ?.map((post) => post.feelings.toLowerCase())
       ?.sort((a, b) => a.localeCompare(b, { ignorePunctuation: true }))
   );
 
- 
   // unique
   function uniq(post) {
     return post.sort().filter(function (item, pos, ary) {
       return !pos || item != ary[pos - 1];
     });
   }
+
 
   const [selectFeelings, setSelectFeelings] = useState();
   const handleChangeFeelings = (e) => {
@@ -42,14 +43,14 @@ const FeelingsDropDown = ({loginUser}) => {
     (item) => item.feelings === selectFeelings
   );
 
-
   return (
     <div>
       <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center pt-8">
         SOS Style, let's help.
       </h1>
       <p class="lg:text-2xl md:text1xl sm:text-xl text-base font-serif mb-14 text-center">
-        hey {loginUser?.username}, how are you feeling today? let's pick outfits based on your mood.
+        hey {loginUser?.username}, how are you feeling today? let's pick outfits
+        based on your mood.
       </p>
 
       <div class="flex flex-col justify-center items-center">
@@ -75,14 +76,18 @@ const FeelingsDropDown = ({loginUser}) => {
         </select>
       </div>
       <div class="grid grid-cols-3 grid-flow-row gap-8">
-      {photoArray?.map((photo) => (
-        <div className="feelingscontainer">
-          <a href={`/wardrobe/${photo._id}`}><img className="feelingsimage" src={photo.image_url} /></a>
-        </div>
-      ))}
+        {photoArray?.map((photo) => (
+          <div className="feelingscontainer">
+            <Link to={`/wardrobe/${photo._id}`}>
+              <img className="feelingsimage" src={photo.image_url} />
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
 export default FeelingsDropDown;
+
+

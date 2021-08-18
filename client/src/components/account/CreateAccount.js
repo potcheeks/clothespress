@@ -17,8 +17,11 @@ const CreateAccount = ({ loginUser, setLoginUser }) => {
           "Content-Type": "application/json",
         },
       }).then((res) => {
-        console.log("Account created", res.data);
-      });
+        console.log("Account created", res.data)
+        return res.json()
+      }).then((data) => {
+        setLoginUser(data)
+      })
     } catch (err) {
       console.error(err);
     }
