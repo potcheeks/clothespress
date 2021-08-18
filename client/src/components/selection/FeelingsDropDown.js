@@ -2,49 +2,54 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 
-import "./Occasion.css";
+import "./FeelingsDropDown.css";
 
-const Occasion = (loginUser) => {
-  const { data, error, isLoading } = useQuery("outfitQuery", () =>
-    axios(`/v1/users/${loginUserID}`)
+const FeelingsDropDown = ({loginUser}) => {
+  const loginUserID = loginUser?._id;
+  const [postHistory, setPostHistory] = useState([]);
+
+  const { data, error, isLoading, onSuccess } = useQuery(
+    ["outfitQuery", loginUser],
+    () => axios(`/v1/users/${loginUserID}`),
+    {
+      onSuccess: (data) => {
+        setPostHistory(data?.data?.posts_history);
+      },
+    }
   );
 
-  const loginUserID = "6117e2af37eb3bd2df0897c5" || loginUser.username;
-
-  const userData = data?.data;
-  const postHistory = userData?.posts_history;
-
-  const occasion = uniq(
+  const feelings = uniq(
     postHistory
-      ?.map((post) => post.occasion)
+      ?.map((post) => post.feelings)
       ?.sort((a, b) => a.localeCompare(b, { ignorePunctuation: true }))
   );
 
-   // unique
-   function uniq(post) {
+ 
+  // unique
+  function uniq(post) {
     return post.sort().filter(function (item, pos, ary) {
       return !pos || item != ary[pos - 1];
     });
   }
 
-  const [selectOccasion, setSelectOccasion] = useState();
-  const handleChangeOccasion = (e) => {
+  const [selectFeelings, setSelectFeelings] = useState();
+  const handleChangeFeelings = (e) => {
     e.preventDefault();
-    setSelectOccasion(e.target.value);
+    setSelectFeelings(e.target.value);
   };
 
   const photoArray = postHistory.filter(
-    (item) => item.occasion === selectOccasion
+    (item) => item.feelings === selectFeelings
   );
 
 
   return (
     <div>
-       <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center pt-8">
+      <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center pt-8">
         SOS Style, let's help.
       </h1>
       <p class="lg:text-2xl md:text1xl sm:text-xl text-base font-serif mb-14 text-center">
-        good morning {userData?.username}, and where are you going today?
+        hey {loginUser?.username}, how are you feeling today? let's pick outfits based on your mood.
       </p>
 
       <div class="flex flex-col justify-center items-center">
@@ -61,23 +66,23 @@ const Occasion = (loginUser) => {
         </svg>
         <select
           class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none text-lg font-serif"
-          onChange={handleChangeOccasion}
+          onChange={handleChangeFeelings}
         >
-          <option>hey halt, where we going?</option>
-          {occasion?.map((item) => {
+          <option>Ugh feelings, what are they?</option>
+          {feelings?.map((item) => {
             return <option value={item}>{item}</option>;
           })}
         </select>
       </div>
       <div class="grid grid-cols-3 grid-flow-row gap-8">
       {photoArray?.map((photo) => (
-        <div className="container">
-          <a href={`/wardrobe/${photo._id}`}><img className="occasionimage" src={photo.image_url} /></a>
+        <div className="feelingscontainer">
+          <a href={`/wardrobe/${photo._id}`}><img className="feelingsimage" src={photo.image_url} /></a>
         </div>
       ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Occasion
+export default FeelingsDropDown;

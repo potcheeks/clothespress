@@ -12,17 +12,17 @@
   transform:perspective(800px) rotateY(0deg);
   transition:0.5s;
 }
-.container {
+.feelingscontainer {
   display:flex;
   justify-content:center;
   align-items:center;
   gap:20px;
   
 }
-.container:hover img {
+.feelingscontainer:hover img {
   opacity:0.3;
 }
-.container img:hover {
+.feelingscontainer img:hover {
   transform:perspective(800px)       rotateY(25deg);
   opacity:1;
 }

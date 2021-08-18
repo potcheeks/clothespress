@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { initReactQueryAuth } from "react-query-auth";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import Navbar from "./components/Navbar";
@@ -16,16 +15,17 @@ import EditOutfitForm from "./components/EditOutfitForm"
 
 import Colours from "./components/selection/Colours"
 import Outfit from "./components/selection/Outfit"
-import Feelings from "./components/selection/Feelings"
-import Occasion from "./components/selection/Occasion"
+import FeelingsDropDown from "./components/selection/FeelingsDropDown"
+import OccasionDropDown from "./components/selection/OccasionDropDown"
+import Choices from "./components/selection/Choices"
 
 
 function App() {
   const queryClient = new QueryClient();
-  const [loginUser, setLoginUser] = useState();
+  const [loginUser, setLoginUser] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:4000/v1/sessions/check")
+    fetch("v1/sessions/check")
       .then((res) => res.json())
       .then((data) => {
         setLoginUser(data);
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
-      <Navbar />
+      <Navbar loginUser={loginUser} />
       <Switch>
         <Route path="/" exact>
           <Main />
@@ -54,16 +54,21 @@ function App() {
           <SignIn setLoginUser={setLoginUser} loginUser={loginUser} />
         </Route>
 
+        <Route path="/styleme" exact>
+          <Choices loginUser={loginUser}/>
+        </Route>
+
+
         <Route path="/colour" exact>
           <Colours loginUser={loginUser}/>
         </Route>
 
         <Route path="/feelings" exact>
-          <Feelings loginUser={loginUser}/>
+          <FeelingsDropDown loginUser={loginUser}/>
         </Route>
 
         <Route path="/occasion" exact>
-          <Occasion loginUser={loginUser}/>
+          <OccasionDropDown loginUser={loginUser}/>
         </Route>
 
 

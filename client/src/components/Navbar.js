@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (loginUser) => {
   return (
     <nav className="flex justify-between item-center h-16 bg-white text-black relative shadow-sm font-mono" role="navation">
       <Link to="/" className="p-8">
-        clothes(ex)press
+        Welcome to clothes(ex)press, {loginUser.username}
       </Link>
+      
+      
       <div className="px-4 cursor-pointer md:hidden p-8">
         <svg
           class="w-6 h-6"
@@ -23,14 +25,15 @@ const Navbar = () => {
           ></path>
         </svg>
       </div>
+
+      
       <div className="p-8 md:block hidden">
         <Link className="p-4" to="/">Home</Link>
         <Link className="p-4" to="/signup">Create an Account</Link>
         <Link className="p-4" to="/login">Sign In</Link>
         <Link className="p-4" to="/hang">Hang</Link>
-        <Link className="p-4" to="/colour">Colour</Link>
-        <Link className="p-4" to="/feelings">Feelings</Link>
-        <Link className="p-4" to="/occasion">Occasion</Link>
+        <Link className="p-4" to="/wardrobe">Wardrobe</Link>
+        <Link className="p-4" to="/styleme">SOS Style</Link>
 
       </div>
     </nav>

@@ -24,7 +24,7 @@ const SignIn = ({setLoginUser, loginUser}) => {
         return res.json();
       }).then((data) => {
         setLoginUser(data)
-        console.log("userID logged in this is data",data)
+        console.log("data from LoginUser",data)
       })
     } catch (err) {
       console.error(err);
@@ -62,10 +62,14 @@ const SignIn = ({setLoginUser, loginUser}) => {
           welcome back
         </h1>
         <div class="grid grid-flow-col grid-cols-2">
-          <div class="flex">
-            <img src="https://i.pinimg.com/564x/74/cf/9f/74cf9fb9f7cf9e1fa6bee5e2efeefc4a.jpg" />
+          <div class="justify-self-center">
+            <img
+            style={{
+              width: "400px",
+            }} 
+            src="https://i.pinimg.com/564x/74/cf/9f/74cf9fb9f7cf9e1fa6bee5e2efeefc4a.jpg" />
           </div>
-          <div class="flex">
+          <div class="justify-self-center">
             <form onSubmit={handleSubmit(submitData)}>
               <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
                 Name

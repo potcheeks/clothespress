@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { Redirect } from "react-router-dom";
 
-const CreateAccount = ({loginUser, setLoginUser}) => {
+const CreateAccount = ({ loginUser, setLoginUser }) => {
   //USEFORM
   const { register, handleSubmit } = useForm();
 
@@ -59,10 +59,15 @@ const CreateAccount = ({loginUser, setLoginUser}) => {
           create an account
         </h1>
         <div class="grid grid-flow-col grid-cols-2">
-          <div class="flex">
-            <img src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzV8fGZhc2hpb258ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" />
+          <div class="justify-self-center">
+            <img
+              style={{
+                width: "400px",
+              }}
+              src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzV8fGZhc2hpb258ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+            />
           </div>
-          <div class="flex">
+          <div class="justify-self-center">
             <form onSubmit={handleSubmit(submitData)}>
               <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
                 Name

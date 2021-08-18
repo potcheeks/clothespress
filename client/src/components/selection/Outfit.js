@@ -8,7 +8,7 @@ import "./Outfit.css";
 
 const Outfit = () => {
   const { postid } = useParams();
-  
+
   const { data, error, isLoading } = useQuery(["singleOutfitQuery", postid], () =>
     axios(`/v1/posts/${postid}`)
   );
@@ -25,6 +25,12 @@ const Outfit = () => {
       <p class="lg:text-2xl md:text1xl sm:text-xl text-base font-serif mb-14 text-center">
         piqued your interest, this isn't just worth a mere peek.
       </p>
+      
+      <a
+      class="text-sm text-center font-serif"
+      href="/wardrobe"><p class="text-sm font-serif mb-14 text-center">
+      back to wardrobe
+      </p></a>
       <div class="grid grid-cols-2 grid-flow-row">
       <div className="container">
         <img
