@@ -10,7 +10,10 @@
 
     "install-client": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build",
+
+    "deploy": "NODE_ENV=production webpack --mode production",
+    "watch": "NODE_ENV=development webpack --mode development --watch-stdin"
   },
   
   "repository": {
