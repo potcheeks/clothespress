@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Redirect, useHistory } from "react-router-dom";
 
 import axios from "axios";
@@ -13,6 +13,8 @@ import "./EditOutfitForm.css";
 const EditOutfitForm = ({ loginUser }) => {
   const { postid } = useParams();
   let history = useHistory();
+  const { register, handleSubmit, reset, setValue } = useForm();
+  const queryClient = useQueryClient()
 
   //Getting data from backend for previous values
   const { data } = useQuery(
@@ -27,8 +29,6 @@ const EditOutfitForm = ({ loginUser }) => {
       },
     }
   );
-
-  const { register, handleSubmit, reset, setValue } = useForm();
 
   const editPost = async (newPost) => {
     try {
@@ -47,8 +47,8 @@ const EditOutfitForm = ({ loginUser }) => {
       console.error(err);
     }
   };
-
-  const handleDelete = (event) => {
+  
+  const deletePost = (event) => {
     event.preventDefault();
     fetch(`/v1/posts/${postid}`, {
       method: "DELETE",
@@ -60,24 +60,31 @@ const EditOutfitForm = ({ loginUser }) => {
     history.push("/wardrobe");
   };
 
-  // USE MUTATION
-  // const queryClient = useQueryClient()
-  const mutation = useMutation((newPost) => editPost(newPost));
-  // const mutation = useMutation((editedpost) => handleDelete(editedpost))
+  const {mutate: editOutfit, isSuccess } = useMutation(
+    editPost,
+    {onSuccess: () => queryClient.invalidateQueries("singleOutfitQuery")}
+  )
+    
 
-  const { isError, isSuccess } = mutation;
-
-  const submitData = async (data) => {
-    mutation.mutate(data);
-  };
-
+  const {mutate: deleteOutfit, isSuccess: isSuccessDelete } = useMutation(
+    deletePost,
+    {onSuccess: () => queryClient.invalidateQueries("singleOutfitQuery")}
+  )
+  
   if (isSuccess) {
     return <Redirect to={`/wardrobe/${postid}`} />;
   }
 
-  if (isError) {
-    return "Error" ;
+
+  if (isSuccessDelete) {
+    return <Redirect to="/wardrobe/"/>;
   }
+
+
+  
+
+
+
 
   return (
     <div>
@@ -86,7 +93,7 @@ const EditOutfitForm = ({ loginUser }) => {
       </h1>
       <div class="grid grid-flow-col grid-cols-2 container mx-auto">
         <div>
-          <form class="m-20" onSubmit={handleSubmit(submitData)}>
+          <form class="m-20" onSubmit={handleSubmit(editOutfit)}>
             <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif  pt-16">
               What brand is this from?
             </p>
@@ -141,7 +148,7 @@ const EditOutfitForm = ({ loginUser }) => {
           src={data?.data?.image_url} alt="chosen" />
           <div class="justify-items-center">
           <button
-            onClick={handleDelete}
+            onClick={deleteOutfit}
             class="inline-flex items-center px-3 py-2 font-serif rounded px-4 py-2 leading-5 bg-white text-primary-100 text-black"
           >
             <svg

@@ -40,20 +40,14 @@ router.post("/upload", async (req, res) => {
       upload_preset: "clothespress",
     });
     console.log("SUCCESS IMAGE SENT TO CLOUD!");
-    console.log(process.env.GOOGLE_CREDENTIALS)
+   
     const client = new vision.ImageAnnotatorClient({
       keyFilename: process.env.GOOGLE_CREDENTIALS,
     });
 
-    const imageRequest = {
-      image: { 
-        content: imageData.substring("data:image/png;base64,".length)
-      }, features: imageData[{
-        model: "buildin/latest"
-      }]
-    };
+    const imageURL = uploadedResponse.secure_url
 
-    client.imageProperties(imageRequest, {verbrose: true}).then((results) => {
+    client.imageProperties(imageURL, {verbrose: true}).then((results) => {
       const colors =
         results[0]?.imagePropertiesAnnotation.dominantColors.colors;
         colors?.forEach(color => console.log("all the colours",color));

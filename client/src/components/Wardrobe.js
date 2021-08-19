@@ -6,12 +6,14 @@ import axios from "axios";
 import "./Wardrobe.css";
 
 const Wardrobe = ({ loginUser }) => {
-  const { data, isError, isLoading } = useQuery(["outfitQuery",loginUser], () =>
+  const loginUserID = loginUser._id;
+  const userPosts = loginUser.posts_history
+
+  const { data, isError, isLoading } = useQuery(["outfitQuery",userPosts], () =>
     axios(`/v1/users/${loginUserID}`)
   );
 
-  const loginUserID = loginUser._id;
-
+  
   const userData = data?.data;
   const outfitPosts = userData?.posts_history;
   console.log("outfitposts", outfitPosts);
@@ -26,7 +28,7 @@ const Wardrobe = ({ loginUser }) => {
 
   if (isError) {
     return (
-      <p class="lg:text-xl md:text-xl sm:text-xl text-base font-mono pt-16">"Uh oh, your outfit's too ugly."</p>);
+      <p class="lg:text-xl md:text-xl sm:text-xl text-base font-mono pt-16">"BRB, spring cleaning!"</p>);
   }
 
   return (
