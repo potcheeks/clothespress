@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, "./client/build", "index.html")));
 app.use(methodOverride("_method"));
 
 
-app.get("/*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
