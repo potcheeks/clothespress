@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-const Navbar = ({ loginUser, setLoginUser, setNavBar, navBar }) => {
-
+const Navbar = ({ loginUser, setLoginUser }) => {
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,17 +12,17 @@ const Navbar = ({ loginUser, setLoginUser, setNavBar, navBar }) => {
         "Content-type": "application/json",
       },
     });
-    setNavBar()
-   console.log("button works")
+    setLoginUser({});
+    history.push("/");
   };
-console.log("navbar", navBar)
-console.log("loginsuer on nav", loginUser)
+
+  console.log("loginsuer on nav", loginUser);
   return (
     <nav
       className="flex justify-between item-center h-16 bg-white text-black relative shadow-sm font-mono"
       role="navation"
     >
-      {navBar !== undefined ? (
+      {Object.keys(loginUser).length !== 0 ? (
         <Link to="/" className="p-8">
           Welcome to clothes(ex)press, {loginUser.username}
         </Link>
@@ -51,7 +51,8 @@ console.log("loginsuer on nav", loginUser)
       </div>
 
       <div className="p-8 md:block hidden">
-       
+        {Object.keys(loginUser).length !== 0 ? (
+          <>
             <Link className="p-4" to="/hang">
               Hang
             </Link>
@@ -77,14 +78,17 @@ console.log("loginsuer on nav", loginUser)
                 />
               </svg>
             </button>
-         
+          </>
+        ) : (
+          <>
             <Link className="p-4" to="/signup">
               Create an Account
             </Link>
             <Link className="p-4" to="/login">
               Sign In
             </Link>
-        
+          </>
+        )}
       </div>
     </nav>
   );
