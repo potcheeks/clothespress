@@ -1,6 +1,10 @@
-module.exports = { 
-  plugins: [
-      require("tailwindcss"),
-      require("autoprefixer")
-  ], 
-};
+module.exports = {
+  purge: [
+      './src/**/*.js'
+  ],
+  theme: {
+    extend: {},
+  },
+  variants: {},
+  plugins: [],
+}
