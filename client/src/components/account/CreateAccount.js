@@ -58,19 +58,20 @@ const CreateAccount = ({ loginUser, setLoginUser }) => {
   return (
     <>
       <div>
-        <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center py-8">
+        <h1 class="lg:text-5xl md:text3xl sm:text-2xl text-base font-serif mb-14 text-center py-8">
           create an account
         </h1>
-        <div class="grid grid-flow-col grid-cols-2">
-          <div class="justify-self-center">
+        <div class="grid grid-flow-col grid-cols-5">
+          <div></div>
+          <div class="col-span-2">
             <img
-              style={{
-                width: "400px",
-              }}
-              src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzV8fGZhc2hpb258ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+              alt="createaccountimage"
+              className="object-fill"
+              src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
             />
           </div>
-          <div class="justify-self-center">
+          <div 
+          className="col-span-1">
             <form onSubmit={handleSubmit(submitData)}>
               <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
                 Name
@@ -112,6 +113,7 @@ const CreateAccount = ({ loginUser, setLoginUser }) => {
               </button>
             </form>
           </div>
+          <div></div>
         </div>
       </div>
     </>
