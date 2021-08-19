@@ -4,10 +4,9 @@ import "./Main.css";
 
 const Main = ({loginUser}) => {
 
-  console.log("loginuseronmain",loginUser)
   return (
-    <div className="bg-white h-screen flex flex-col justify-center bg-fa-img">
-      <div class="grid grid-cols-5">
+    <div className="bg-white h-screen flex flex-col justify-center">
+      <div className="grid grid-cols-5">
         <img 
         alt="main"  
         class="col-span-4"

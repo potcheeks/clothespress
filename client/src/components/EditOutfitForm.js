@@ -58,7 +58,10 @@ const EditOutfitForm = ({ loginUser }) => {
   };
 
   // USE MUTATION
+  // const queryClient = useQueryClient()
   const mutation = useMutation((newPost) => editPost(newPost));
+  // const mutation = useMutation((editedpost) => handleDelete(editedpost))
+
   const { isError, isSuccess } = mutation;
 
   const submitData = async (data) => {

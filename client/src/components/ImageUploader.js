@@ -8,6 +8,9 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { Redirect } from "react-router-dom";
 
+import "./ImageUploader.css";
+
+
 const ImageUploader = ({ loginUser }) => {
   const [previewSource, setPreviewSource] = useState("");
 
@@ -168,7 +171,7 @@ const ImageUploader = ({ loginUser }) => {
             </button>
           </form>
         </div>
-        <div>{previewSource && <img src={previewSource} alt="chosen" />}</div>
+        <div>{previewSource && <div className="uploadercontainer"><img className="imageuploaderimage" src={previewSource} alt="chosen" /></div>}</div>
       </div>
     </div>
   );

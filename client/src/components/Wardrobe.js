@@ -16,16 +16,8 @@ const Wardrobe = ({ loginUser }) => {
   const outfitPosts = userData?.posts_history;
   console.log("outfitposts", outfitPosts);
 
-  // const queryClient = useQueryClient();
 
-  // const {mutate} = useMutation(`/v1/users/${loginUserID}`, {
-  //   // onMutate: () => {
-  //   //   queryC
-  //   // }
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries(["outfitQuery",loginUserID])
-  //   }
-  // })
+  
 
   if (isLoading) {
     return (

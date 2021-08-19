@@ -6,7 +6,7 @@ import { useMutation } from "react-query";
 import { Redirect } from "react-router-dom";
 
 
-const SignIn = ({setLoginUser, loginUser, setNavBar, navBar}) => {
+const SignIn = ({setLoginUser, loginUser}) => {
 
   const { register, handleSubmit } = useForm();
 
@@ -24,7 +24,7 @@ const SignIn = ({setLoginUser, loginUser, setNavBar, navBar}) => {
         return res.json();
       }).then((data) => {
         setLoginUser(data)
-        setNavBar(data)
+
       })
     } catch (err) {
       console.error(err);
@@ -51,26 +51,23 @@ const SignIn = ({setLoginUser, loginUser, setNavBar, navBar}) => {
       if (isError) {
         return "Sorry! Please create an account wiht us"}
 
-    console.log("loginUser", loginUser)  
 
 
   return (
   
        <>
       <div>
-        <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center py-8">
+        <h1 class="lg:text-5xl md:text3xl sm:text-2xl text-base font-serif mb-14 text-center py-8">
           welcome back
         </h1>
-        <div class="grid grid-flow-col grid-cols-2">
-          <div class="justify-self-center">
+        <div class="grid grid-flow-col grid-cols-3">
+          <div class="justify-self-center col-span-1">
             <img
             alt="signinimage"
-            style={{
-              width: "400px",
-            }} 
+            className=""
             src="https://i.pinimg.com/564x/74/cf/9f/74cf9fb9f7cf9e1fa6bee5e2efeefc4a.jpg" />
           </div>
-          <div class="justify-self-center">
+          <div className="justify-self-center col-span-2">
             <form onSubmit={handleSubmit(submitData)}>
               <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
                 Name
@@ -79,11 +76,11 @@ const SignIn = ({setLoginUser, loginUser, setNavBar, navBar}) => {
                 type="text"
                 {...register("username", { required: true })}
               />{" "}
-              <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4">
+              <p className="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4">
                 Email
               </p>
               <input type="email" {...register("email", { required: true })} />{" "}
-              <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4">
+              <p className="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4">
                 Password
               </p>
               <input
@@ -93,8 +90,8 @@ const SignIn = ({setLoginUser, loginUser, setNavBar, navBar}) => {
               <br />
               <br />
               <br />
-              <button class="inline-flex items-center px-3 py-2 font-serif rounded px-4 py-2 leading-5 bg-black text-primary-100 text-white hover:text-white hover:bg-green-700">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>{" "}
+              <button className="inline-flex items-center px-3 py-2 font-serif rounded px-4 py-2 leading-5 bg-black text-primary-100 text-white hover:text-white hover:bg-green-700">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>{" "}
                 Log in
               </button>
             </form>
