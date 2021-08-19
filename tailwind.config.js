@@ -1,9 +1,12 @@
 module.exports = {
   purge: [
-    './src/**/*.html',
-    './src/**/*.jsx',
+    "./pages/**/*.js", 
+    "./components/**/*.js", 
+    "./plugins/**/*.js",
+    "./static/**/*.js",
+    "./store/**/*.js",
   ],
   theme: {},
   variants: {},
-  plugins: [],
-}
+  plugins: []
+};

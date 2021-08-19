@@ -9,9 +9,10 @@ const Main = ({loginUser}) => {
     <div className="bg-white h-screen flex flex-col justify-center bg-fa-img">
       <div class="grid grid-cols-5">
         <img 
+        alt="main"  
         class="col-span-4"
         src="https://images.unsplash.com/photo-1603189343302-e603f7add05a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80">
-        alt="main"  
+        
         </img>
         <div>
           <p class="lg:text-lg md:text-base sm:text-sm font-serif pr-10 col-span-1 pt-12">

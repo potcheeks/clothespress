@@ -29,7 +29,7 @@ app.use(
   })
 );
 app.use(express.json({ limit: "10mb" }));
-app.use(express.static(path.join(__dirname, "/client/build", "index.html")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 app.use(methodOverride("_method"));
 
 
