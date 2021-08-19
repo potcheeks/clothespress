@@ -29,12 +29,12 @@ app.use(
   })
 );
 app.use(express.json({ limit: "10mb" }));
-app.use(express.static(path.join(__dirname, "./client/build", "index.html")));
+app.use(express.static(path.join("./client/build", "index.html")));
 app.use(methodOverride("_method"));
 
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+  res.sendFile(path.join("./client/build", "index.html"));
 });
 
 //* =======================================
