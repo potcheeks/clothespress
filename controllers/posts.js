@@ -40,9 +40,9 @@ router.post("/upload", async (req, res) => {
       upload_preset: "clothespress",
     });
     console.log("SUCCESS IMAGE SENT TO CLOUD!");
-
+    console.log(process.env.GOOGLE_CREDENTIALS)
     const client = new vision.ImageAnnotatorClient({
-      keyFilename: GOOGLE_CREDENTIALS,
+      keyFilename: process.env.GOOGLE_CREDENTIALS,
     });
 
     const imageRequest = {
