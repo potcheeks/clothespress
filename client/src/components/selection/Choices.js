@@ -32,6 +32,7 @@ const Choices = () => {
       <div class="grid grid-cols-3 grid-flow-row">
         <div class="containerchoices">
           <img
+          alt="feelings_image"
             class="imgchoices"
             src="https://i.pinimg.com/564x/e4/72/0a/e4720a017f91a71ef4bbff16ad9f0089.jpg"
           ></img>
@@ -42,6 +43,7 @@ const Choices = () => {
 
         <div class="containerchoices">
           <img
+          alt="occasion_image"
           class="imgchoices" 
           src="https://images.unsplash.com/photo-1523297467724-f6758d7124c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=962&q=80"></img>
           <button 
@@ -51,6 +53,7 @@ const Choices = () => {
 
         <div class="containerchoices">
          <img
+         alt="colours_image"
          class="imgchoices" 
          src="https://images.unsplash.com/photo-1513569771920-c9e1d31714af?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3634&q=80"></img>
          <button

@@ -9,7 +9,7 @@ const OccasionDropDown = ({ loginUser }) => {
   const loginUserID = loginUser?._id;
   const [postHistory, setPostHistory] = useState([]);
 
-  const { data, error, isLoading, onSuccess } = useQuery(
+  useQuery(
     ["outfitQuery", loginUser],
     () => axios(`/v1/users/${loginUserID}`),
     {
@@ -25,11 +25,10 @@ const OccasionDropDown = ({ loginUser }) => {
       ?.sort((a, b) => a.localeCompare(b, { ignorePunctuation: true }))
   );
 
-
   // unique
   function uniq(post) {
     return post.sort().filter(function (item, pos, ary) {
-      return !pos || item != ary[pos - 1];
+      return !pos || item !== ary[pos - 1];
     });
   }
 
@@ -79,7 +78,7 @@ const OccasionDropDown = ({ loginUser }) => {
         {photoArray?.map((photo) => (
           <div className="container">
             <Link to={`/wardrobe/${photo._id}`}>
-              <img className="occasionimage" src={photo.image_url} />
+              <img alt="occasions_image" className="occasionimage" src={photo.image_url} />
             </Link>
           </div>
         ))}

@@ -47,13 +47,13 @@ const CreateAccount = ({ loginUser, setLoginUser }) => {
     );
   }
 
-  // if (isError) {
-  //   return (
-  //     <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
-  //       {error}
-  //     </p>
-  //   );
-  // }
+  if (isError) {
+    return (
+      <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
+       "Error"
+      </p>
+    );
+  }
 
   return (
     <>

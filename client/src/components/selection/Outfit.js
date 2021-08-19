@@ -8,7 +8,7 @@ import "./Outfit.css";
 const Outfit = ({ loginUser }) => {
   const { postid } = useParams();
 
-  const { data, error, isLoading } = useQuery(
+  const { data } = useQuery(
     ["singleOutfitQuery", postid],
     () => axios(`/v1/posts/${postid}`)
   );
@@ -41,7 +41,6 @@ const Outfit = ({ loginUser }) => {
           </p>
           <Link to={`/wardrobe/edit/${postid}`}>
             <button class="lg:text-xl md:textxl sm:text-xl text-base font-serif mb-14 lowercase max-w-lg pt-40">
-              {" "}
               // edit
             </button>
           </Link>

@@ -12,7 +12,7 @@ const EditOutfitForm = ({ loginUser }) => {
   let history = useHistory();
 
   //Getting data from backend for previous values
-  const { data, error, isLoading, onSuccess } = useQuery(
+  const { data } = useQuery(
     ["singleOutfitQuery", postid],
     () => axios(`/v1/posts/${postid}`),
     {
@@ -67,6 +67,10 @@ const EditOutfitForm = ({ loginUser }) => {
 
   if (isSuccess) {
     return <Redirect to={`/wardrobe/${postid}`} />;
+  }
+
+  if (isError) {
+    return "Error" ;
   }
 
   return (

@@ -9,7 +9,7 @@ const FeelingsDropDown = ({ loginUser }) => {
   const loginUserID = loginUser?._id;
   const [postHistory, setPostHistory] = useState([]);
 
-  const { data, error, isLoading, onSuccess } = useQuery(
+  useQuery(
     ["outfitQuery", loginUser],
     () => axios(`/v1/users/${loginUserID}`),
     {
@@ -28,10 +28,9 @@ const FeelingsDropDown = ({ loginUser }) => {
   // unique
   function uniq(post) {
     return post.sort().filter(function (item, pos, ary) {
-      return !pos || item != ary[pos - 1];
+      return !pos || item !== ary[pos - 1];
     });
   }
-
 
   const [selectFeelings, setSelectFeelings] = useState();
   const handleChangeFeelings = (e) => {
@@ -79,7 +78,7 @@ const FeelingsDropDown = ({ loginUser }) => {
         {photoArray?.map((photo) => (
           <div className="feelingscontainer">
             <Link to={`/wardrobe/${photo._id}`}>
-              <img className="feelingsimage" src={photo.image_url} />
+              <img alt="feelings_image" className="feelingsimage" src={photo.image_url} />
             </Link>
           </div>
         ))}
@@ -89,5 +88,3 @@ const FeelingsDropDown = ({ loginUser }) => {
 };
 
 export default FeelingsDropDown;
-
-

@@ -6,7 +6,7 @@ import axios from "axios";
 import "./Wardrobe.css";
 
 const Wardrobe = ({ loginUser }) => {
-  const { data, isError, isLoading } = useQuery("outfitQuery", () =>
+  const { data, isError, isLoading } = useQuery(["outfitQuery",loginUser], () =>
     axios(`/v1/users/${loginUserID}`)
   );
 
@@ -15,6 +15,17 @@ const Wardrobe = ({ loginUser }) => {
   const userData = data?.data;
   const outfitPosts = userData?.posts_history;
   console.log("outfitposts", outfitPosts);
+
+  // const queryClient = useQueryClient();
+
+  // const {mutate} = useMutation(`/v1/users/${loginUserID}`, {
+  //   // onMutate: () => {
+  //   //   queryC
+  //   // }
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(["outfitQuery",loginUserID])
+  //   }
+  // })
 
   if (isLoading) {
     return (

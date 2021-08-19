@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 
 import { useForm } from "react-hook-form";
@@ -64,6 +64,7 @@ const SignIn = ({setLoginUser, loginUser, setNavBar, navBar}) => {
         <div class="grid grid-flow-col grid-cols-2">
           <div class="justify-self-center">
             <img
+            alt="signinimage"
             style={{
               width: "400px",
             }} 

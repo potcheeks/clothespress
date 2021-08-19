@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ loginUser, setLoginUser, setNavBar, navBar }) => {
-  const history = useHistory();
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,8 +51,7 @@ console.log("loginsuer on nav", loginUser)
       </div>
 
       <div className="p-8 md:block hidden">
-        {navBar !== undefined ? (
-          <>
+       
             <Link className="p-4" to="/hang">
               Hang
             </Link>
@@ -78,17 +77,14 @@ console.log("loginsuer on nav", loginUser)
                 />
               </svg>
             </button>
-          </>
-        ) : (
-          <>
+         
             <Link className="p-4" to="/signup">
               Create an Account
             </Link>
             <Link className="p-4" to="/login">
               Sign In
             </Link>
-          </>
-        )}
+        
       </div>
     </nav>
   );
