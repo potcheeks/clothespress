@@ -28,7 +28,7 @@ const Outfit = ({ loginUser }) => {
         <p class="text-sm font-serif mb-14 text-center">back to wardrobe</p>
       </a> */}
       <div class="grid grid-cols-2 grid-flow-row">
-        <div className="container">
+        <div className="outfitcontainer">
           <img className="outfitimage" src={outfitData?.image_url} alt="" />
         </div>
 

@@ -1,4 +1,4 @@
-.occasionimage {
+.editimage {
   width: 55%;
   height: 100%;
   object-fit:cover;
@@ -12,17 +12,18 @@
   transform:perspective(800px) rotateY(0deg);
   transition:0.5s;
 }
-.occasioncontainer {
+
+.editimagecontainer {
   display:flex;
   justify-content:center;
   align-items:center;
   gap:20px;
   
 }
-.occasioncontainer:hover img {
+.editimagecontainer:hover img {
   opacity:0.3;
 }
-.occasioncontainer img:hover {
+.editimagecontainer img:hover {
   transform:perspective(800px)       rotateY(25deg);
   opacity:1;
 }

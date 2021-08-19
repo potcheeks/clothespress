@@ -61,7 +61,8 @@ const CreateAccount = ({ loginUser, setLoginUser }) => {
         <h1 class="lg:text-5xl md:text3xl sm:text-2xl text-base font-serif mb-14 text-center py-8">
           create an account
         </h1>
-        <div class="grid grid-flow-col grid-cols-5">
+        <div 
+        class="grid grid-flow-col grid-cols-5 container mx-auto">
           <div></div>
           <div class="col-span-2">
             <img
@@ -70,10 +71,10 @@ const CreateAccount = ({ loginUser, setLoginUser }) => {
               src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
             />
           </div>
-          <div 
-          className="col-span-1">
+          <div
+          className="col-span-1 pl-32">
             <form onSubmit={handleSubmit(submitData)}>
-              <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
+              <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-48">
                 Name
               </p>
               <input

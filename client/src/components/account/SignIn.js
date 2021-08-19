@@ -57,11 +57,13 @@ const SignIn = ({setLoginUser, loginUser}) => {
        <>
        <div>
         <h1 class="lg:text-5xl md:text3xl sm:text-2xl text-base font-serif mb-14 text-center py-8">
-          create an account
+          welcome back
         </h1>
-        <div class="grid grid-flow-col grid-cols-5">
+        <div 
+        class="grid grid-flow-col grid-cols-5 container mx-auto">
           <div></div>
-          <div class="col-span-2">
+          <div 
+          class="col-span-2">
             <img
               alt="signinimage"
               className="object-fill"
@@ -69,9 +71,9 @@ const SignIn = ({setLoginUser, loginUser}) => {
             />
           </div>
           <div
-          className="col-span-1">
+          className="col-span-1 pl-32">
             <form onSubmit={handleSubmit(submitData)}>
-              <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-16">
+              <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4 pt-60">
                 Name
               </p>
               <input

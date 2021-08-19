@@ -10,7 +10,7 @@ const OccasionDropDown = ({ loginUser }) => {
   const [postHistory, setPostHistory] = useState([]);
 
   useQuery(
-    ["outfitQuery", loginUser],
+    ["outfitQuery", loginUserID],
     () => axios(`/v1/users/${loginUserID}`),
     {
       onSuccess: (data) => {
@@ -21,8 +21,8 @@ const OccasionDropDown = ({ loginUser }) => {
 
   const occasion = uniq(
     postHistory
-      ?.map((post) => post.occasion.toLowerCase())
-      ?.sort((a, b) => a.localeCompare(b, { ignorePunctuation: true }))
+      ?.map((post) => post.occasion)
+      ?.sort((a, b) => a?.localeCompare(b, { ignorePunctuation: true }))
   );
 
   // unique
@@ -38,7 +38,7 @@ const OccasionDropDown = ({ loginUser }) => {
     setSelectOccasion(e.target.value);
   };
 
-  const photoArray = postHistory.filter(
+  const photoArray = postHistory?.filter(
     (item) => item.occasion === selectOccasion
   );
 
@@ -76,7 +76,7 @@ const OccasionDropDown = ({ loginUser }) => {
       </div>
       <div class="grid grid-cols-3 grid-flow-row gap-8">
         {photoArray?.map((photo) => (
-          <div className="container">
+          <div className="occasioncontainer">
             <Link to={`/wardrobe/${photo._id}`}>
               <img alt="occasions_image" className="occasionimage" src={photo.image_url} />
             </Link>

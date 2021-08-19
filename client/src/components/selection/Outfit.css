@@ -12,17 +12,17 @@
   transform:perspective(800px) rotateY(0deg);
   transition:0.5s;
 }
-.container {
+.outfitcontainer {
   display:flex;
   justify-content:center;
   align-items:center;
   gap:20px;
   
 }
-.container:hover img {
+.outfitcontainer:hover img {
   opacity:0.3;
 }
-.container img:hover {
+.outfitcontainer img:hover {
   transform:perspective(800px)       rotateY(25deg);
   opacity:1;
 }

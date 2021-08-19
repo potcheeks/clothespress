@@ -10,7 +10,7 @@ const FeelingsDropDown = ({ loginUser }) => {
   const [postHistory, setPostHistory] = useState([]);
 
   useQuery(
-    ["outfitQuery", loginUser],
+    ["outfitQuery", loginUserID],
     () => axios(`/v1/users/${loginUserID}`),
     {
       onSuccess: (data) => {
@@ -19,10 +19,12 @@ const FeelingsDropDown = ({ loginUser }) => {
     }
   );
 
+
+  
   const feelings = uniq(
     postHistory
-      ?.map((post) => post.feelings.toLowerCase())
-      ?.sort((a, b) => a.localeCompare(b, { ignorePunctuation: true }))
+      ?.map((post) => post.feelings)
+      ?.sort((a, b) => a?.localeCompare(b, { ignorePunctuation: true }))
   );
 
   // unique
@@ -53,6 +55,8 @@ const FeelingsDropDown = ({ loginUser }) => {
       </p>
 
       <div class="flex flex-col justify-center items-center">
+
+        
         <svg
           class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
           xmlns="http://www.w3.org/2000/svg"

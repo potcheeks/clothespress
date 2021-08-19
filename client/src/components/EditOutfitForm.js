@@ -7,6 +7,9 @@ import { Redirect, useHistory } from "react-router-dom";
 
 import axios from "axios";
 
+
+import "./EditOutfitForm.css";
+
 const EditOutfitForm = ({ loginUser }) => {
   const { postid } = useParams();
   let history = useHistory();
@@ -81,7 +84,7 @@ const EditOutfitForm = ({ loginUser }) => {
       <h1 class="lg:text-5xl md:text3xl sm:text-xl text-base font-serif mb-14 text-center py-8">
         let's (re)hang your outfit
       </h1>
-      <div class="grid grid-flow-col grid-cols-2">
+      <div class="grid grid-flow-col grid-cols-2 container mx-auto">
         <div>
           <form class="m-20" onSubmit={handleSubmit(submitData)}>
             <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif  pt-16">
@@ -132,8 +135,10 @@ const EditOutfitForm = ({ loginUser }) => {
          
           
         </div>
-        <div>
-          <img src={data?.data?.image_url} alt="chosen" />
+        <div className="editimagecontainer">
+          <img
+          className="editimage"
+          src={data?.data?.image_url} alt="chosen" />
           <div class="justify-items-center">
           <button
             onClick={handleDelete}
