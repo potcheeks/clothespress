@@ -9,25 +9,6 @@ const cloudinary = require("../utils/cloudinary");
 
 const vision = require("@google-cloud/vision");
 
-// client.imageProperties(imageURL).then((results) => {
-// const client = new vision.ImageAnnotatorClient({
-// keyFilename: "/Users/chachan/git/project/cloudAPIkey.json",
-// });
-// const imageURL = uploadedResponse.secure_url;
-// client
-// .imageProperties(imageURL)
-// .then((results) => {
-//   const colors = results[0]?.imagePropertiesAnnotation.dominantColors.colors;
-//   const dominantColour = colors[0]?.color
-
-//   console.log("Dominant colour:", dominantColour);
-
-// })
-// .catch((err) => {
-//   console.error("ERROR:", err);
-// });
-// )}
-
 //*=====================SHOW ALL THE POSTS=======================
 router.get("/", (req, res) => {
   Post.find({}, (err, foundPost) => {
@@ -54,24 +35,30 @@ router.get("/:id", (req, res) => {
 router.post("/upload", async (req, res) => {
   try {
     const imageData = req.body.data.previewSource;
+    // console.log("reqbodyID", req.body.userID)
     const uploadedResponse = await cloudinary.uploader.upload(imageData, {
       upload_preset: "clothespress",
     });
     console.log("SUCCESS IMAGE SENT TO CLOUD!");
 
     const client = new vision.ImageAnnotatorClient({
-      keyFilename: "/Users/chachan/git/project/cloudAPIkey.json",
+      keyFilename: GOOGLE_CREDENTIALS,
     });
-    const imageURL = uploadedResponse.secure_url;
 
-    client.imageProperties(imageURL, {verbrose: true}).then((results) => {
-      
+    const imageRequest = {
+      image: { 
+        content: imageData.substring("data:image/png;base64,".length)
+      }, features: imageData[{
+        model: "buildin/latest"
+      }]
+    };
+
+    client.imageProperties(imageRequest, {verbrose: true}).then((results) => {
       const colors =
         results[0]?.imagePropertiesAnnotation.dominantColors.colors;
-        // colors?.forEach(color => console.log(color));
+        colors?.forEach(color => console.log("all the colours",color));
       const dominantColour = colors[0]?.color;
       // console.log("Dominant colour:", dominantColour);
-
       // create a new post
       let post = new Post({
         image_url: uploadedResponse.secure_url,
@@ -80,11 +67,17 @@ router.post("/upload", async (req, res) => {
         brand: req.body.brand,
         occasion: req.body.occasion,
         colour: dominantColour,
+        posted_by: req.body.userID,
       });
       console.log("post is", post);
       post.save();
       console.log("postid", post._id);
-      res.status(200).json({ success: "Success" });
+      User.findByIdAndUpdate(
+        req.body.userID,
+        { $push: { posts_history: post._id } },
+        { new: true },
+        (err, foundUser) => res.json(post)
+      );
     });
   } catch (error) {
     console.log("error isssss", error);
@@ -96,7 +89,7 @@ router.post("/upload", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     // Find post by id
-    let post = await Posts.findById(req.params.id);
+    let post = await Post.findById(req.params.id);
     // Delete post from cloudinary
     await cloudinary.uploader.destroy(post.cloudinary_id);
     // Delete post from db
@@ -111,16 +104,12 @@ router.delete("/:id", async (req, res) => {
 //*=====================UPDATE THE POST=========================
 router.put("/:id", async (req, res) => {
   try {
-    let post = await Post.findbyId(req.params.id);
-    await cloudinary.uploader.destroy(user.cloudinary_id);
-    const result = await cloudinary.uploader.upload(req.file.path);
-
     const data = {
-      brand: req.body.brand || post.brand,
-      feelings: req.body.feelings || post.feelings,
+      brand: req.body.brand,
+      feelings: req.body.feelings,
+      occasion: req.body.occasion
     };
-
-    post = await Posts.findByIdAndUpdate(req.params.id, data, { new: true });
+    post = await Post.findByIdAndUpdate(req.params.id, data, { new: true });
     res.json(post);
   } catch (error) {
     console.log(error);

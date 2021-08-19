@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "proxy": "http://localhost:4000",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+
+    "install-client": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build"
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/potcheeks/clothespress.git"
@@ -29,6 +35,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "http-status-codes": "^2.1.4",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.13.5",
     "multer": "^1.4.2",

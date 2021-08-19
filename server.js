@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const cors = require("cors");
 const methodOverride = require("method-override");
+const path = require('path');
 
 //* =======================================
 //*              CONFIGURATIONS
@@ -20,14 +21,20 @@ const mongodbURI = process.env.MONGODB_URI;
 //* =======================================
 const app = express();
 app.use(cors());
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(express.json({ limit: "10mb" }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "./client/build", "index.html")));
 app.use(methodOverride("_method"));
-app.set("view engine", "ejs");
 
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
 //* =======================================
@@ -50,17 +57,21 @@ mongoose.connection.once("open", () => {
   console.log("connected to mongo");
 });
 
+
+
 //* =======================================
 //*         CONTROLLERS/ROUTES
 //* =======================================
 const postsController = require("./controllers/posts.js");
 app.use("/v1/posts", postsController); //only users can post
 
-// const usersController = require("./controllers/users.js");
-// app.use("/v1/users", usersController);
+const usersController = require("./controllers/users.js");
+app.use("/v1/users", usersController);
 
+const sessionController = require("./controllers/sessions");
+app.use("/v1/sessions", sessionController);
 
-
+ 
 //* =======================================
 //*              LISTENER
 //* =======================================

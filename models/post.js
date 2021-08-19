@@ -12,6 +12,7 @@ const postSchema = new Schema({
     green: Number,
     blue: Number,
    },
+   posted_by: { type: Schema.Types.ObjectId, ref: "User" }
 
   // colours from cloud vision API
 });

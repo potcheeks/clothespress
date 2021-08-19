@@ -1,0 +1,1 @@
+echo ${GOOGLE_CREDENTIALS} > /Users/chachan/git/project/cloudAPIkey.json
