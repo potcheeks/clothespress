@@ -22,7 +22,7 @@ import Choices from "./components/selection/Choices";
 function App() {
   const queryClient = new QueryClient();
   const [loginUser, setLoginUser] = useState({});
-  const [navBar, setNavBar] = useState();
+
 
   useEffect(() => {
     fetch("v1/sessions/check")
@@ -33,16 +33,12 @@ function App() {
       });
   }, []);
   
-  const isLoggedIn = window.sessionStorage.getItem("authUser") ? true : false
-  console.log("isLoggedIn",isLoggedIn)
 
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
       <Navbar
         loginUser={loginUser}
         setLoginUser={setLoginUser}
-        navBar={navBar}
-        setNavBar={setNavBar}
       />
       <Switch>
         <Route path="/" exact>

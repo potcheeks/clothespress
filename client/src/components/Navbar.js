@@ -16,7 +16,6 @@ const Navbar = ({ loginUser, setLoginUser }) => {
     history.push("/");
   };
 
-  console.log("loginsuer on nav", loginUser);
   return (
     <nav
       className="flex justify-between item-center h-16 bg-white text-black relative shadow-sm font-mono"

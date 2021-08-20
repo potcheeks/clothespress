@@ -88,15 +88,14 @@ const ImageUploader = ({ loginUser }) => {
 
   if (isLoading) {
     return (
-      <p class="lg:text-xl md:text-xl sm:text-xl text-base font-mono pt-16">"Sending your outfit for pressing!"</p>);
+      <p className="lg:text-xl md:text-xl sm:text-xl text-base font-mono pt-16 content-center">"Sending your outfit for pressing!"</p>);
   }
 
   if (isError) {
     return (
-      <p class="lg:text-xl md:text-xl sm:text-xl text-base font-mono pt-16">"Uh oh, your outfit's too ugly."</p>);
+      <p className="lg:text-xl md:text-xl sm:text-xl text-base font-mono pt-16">"BRB spring cleaning!"</p>);
   }
 
-  console.log("loginUser from imageuploader", loginUser);
 
   return (
     <div>

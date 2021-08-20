@@ -57,7 +57,6 @@ const EditOutfitForm = ({ loginUser }) => {
       },
     }); 
     console.log("delete button works")
-    history.push("/wardrobe");
   };
 
   const {mutate: editOutfit, isSuccess } = useMutation(
@@ -66,23 +65,24 @@ const EditOutfitForm = ({ loginUser }) => {
   )
     
 
-  const {mutate: deleteOutfit, isSuccess: isSuccessDelete } = useMutation(
+  const {mutate: deleteOutfit, isSuccess: isSuccessDelete, onFetching } = useMutation(
     deletePost,
-    {onSuccess: () => queryClient.invalidateQueries("singleOutfitQuery")}
+    {onSuccess: () => queryClient.invalidateQueries("outfitQuery")}
   )
   
   if (isSuccess) {
     return <Redirect to={`/wardrobe/${postid}`} />;
   }
 
+  if (onFetching) {
+    return (
+      <p class="lg:text-xl md:text-xl sm:text-xl text-base font-mono pt-16">"Loading.. It's off to the cleaners!"</p>);
+  };
+  
 
   if (isSuccessDelete) {
     return <Redirect to="/wardrobe/"/>;
   }
-
-
-  
-
 
 
 
