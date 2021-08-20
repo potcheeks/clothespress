@@ -1,1 +1,1 @@
-echo ${GOOGLE_CREDENTIALS} > /Users/chachan/git/project/cloudAPIkey.json
+echo ${GOOGLE_CREDENTIALS} > /app/google-credentials.json

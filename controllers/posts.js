@@ -42,7 +42,7 @@ router.post("/upload", async (req, res) => {
     console.log("SUCCESS IMAGE SENT TO CLOUD!");
    
     const client = new vision.ImageAnnotatorClient({
-      keyFilename: process.env.GOOGLE_CREDENTIALS,
+      keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
     });
 
     const imageURL = uploadedResponse.secure_url
