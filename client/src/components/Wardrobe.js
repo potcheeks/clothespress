@@ -60,7 +60,7 @@ const Wardrobe = ({ loginUser }) => {
       <div class="grid grid-cols-3 grid-flow-row gap-8">
         {outfitPosts?.map((post) => (
           <>
-            <Link to={`wardrobe/${post._id}`}>
+            <Link to={`/wardrobe/${post._id}`}>
               {" "}
               <div className="wardrobecontainer">
                 <img className="wardrobeoutfit" src={post?.image_url} />
