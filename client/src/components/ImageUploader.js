@@ -104,8 +104,8 @@ const ImageUploader = ({ loginUser }) => {
       </h1>
       <div class="grid grid-flow-col grid-cols-2 container mx-auto">
         <div>
-          <form class="m-20" onSubmit={handleSubmit(submitData)}>
-            <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif pt-16">
+          <form class="m-10" onSubmit={handleSubmit(submitData)}>
+            <p class="lg:text-xl md:text-xl sm:text-xl text-base font-serif">
               What brand is this from?
             </p>
             <input
