@@ -39,7 +39,8 @@ const EditOutfitForm = ({ loginUser }) => {
         headers: {
           "Content-Type": "application/json",
         },
-      }).then((res) => {
+      })
+      .then((res) => {
         reset(res.data);
         console.log("Post submitted", res.data);
       });

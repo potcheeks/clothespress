@@ -9,7 +9,7 @@ const Wardrobe = ({ loginUser }) => {
   const loginUserID = loginUser._id;
   const userPosts = loginUser.posts_history
 
-  const { data, isError, isLoading } = useQuery(["outfitQuery",userPosts], () =>
+  const { data, isError, isLoading } = useQuery(["outfitQuery"], () =>
     axios(`/v1/users/${loginUserID}`)
   );
 
