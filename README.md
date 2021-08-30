@@ -4,7 +4,7 @@ A MERN stack web application that provides a visual and visceral tease of your t
 
 [clothe(ex)press] (http://clothespress.herokuapp.com)
 
-< br />
+
 ## Tech Stack
 
 - Javascript
@@ -18,4 +18,9 @@ A MERN stack web application that provides a visual and visceral tease of your t
 - Cloudinary
 - Google Cloud Vision
 
-< br />
+## Wireframe
+
+<img src = "https://i.ibb.co/s1RC1Lx/Screenshot-2021-08-30-at-12-23-03-PM.png" alt='Wireframe 1' width='800'/>
+<img src = "https://i.ibb.co/WP8STng/Screenshot-2021-08-30-at-12-23-11-PM.png" alt='Wireframe 2' width='800'/>
+
+## Visuals
