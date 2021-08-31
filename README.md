@@ -2,9 +2,6 @@
 
 A MERN stack web application that provides a visual and visceral tease of your threads all in one virtual wardrobe. User is able to add and curate their own finery museum based on ther mood and occasion. Utilising Google's Cloud Vision API, the dominant colour of each outfit will be tagged. 
 
-[clothe(ex)press] (http://clothespress.herokuapp.com)
-
-
 ## Tech Stack
 
 - Javascript
@@ -32,11 +29,12 @@ A MERN stack web application that provides a visual and visceral tease of your t
 1. User has to create an account with clothespress to access the site.
 2. User starts by uploading content to the site via a form and image uploader
 3. The outfit is stored in the wardrobe with terms associated by mood and occasion. 
-4. User will be able to choose an outfit using SOS style based on mood, occasion or colour.
+4. User will be able to choose an outfit using a virtual assistant (SOS style) based on mood, occasion or colour.
 5. Outfits can be edited and deleted.
 
-# To improve
+## To improve
 1. Usage of JWT for login and logout 
 2. Improve functionality of Cloud Vision API 
-3. Summary of brands 
-4. More targeted schema (brand, occasion)
+3. Summary page for brands 
+4. More targeted schema (brand, occasion) that would enable faster loading time
+5. Account set up for vendors (brands)
