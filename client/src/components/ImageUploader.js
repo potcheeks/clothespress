@@ -136,7 +136,7 @@ const ImageUploader = ({ loginUser }) => {
               Take a snapshot
             </p>
             <input
-              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif bg-gray-100"
+              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
               type="file"
               onChange={handleFileInputChange}
             />
