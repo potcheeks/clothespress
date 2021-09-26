@@ -99,7 +99,7 @@ const EditOutfitForm = ({ loginUser }) => {
               What brand is this from?
             </p>
             <input
-              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
+              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif bg-gray-100"
               type="text"
               {...register("brand", { required: true })}
             />
@@ -107,7 +107,7 @@ const EditOutfitForm = ({ loginUser }) => {
               Is it still perfect for the occasion below?
             </p>
             <input
-              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
+              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif bg-gray-100"
               type="text"
               {...register("occasion", { required: true })}
             />
@@ -115,7 +115,7 @@ const EditOutfitForm = ({ loginUser }) => {
               Seasons change, feelings too, how about now.
             </p>
             <input
-              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
+              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif bg-gray-100"
               type="text"
               {...register("feelings", { required: true })}
             />

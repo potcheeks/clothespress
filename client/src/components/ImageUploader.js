@@ -109,7 +109,7 @@ const ImageUploader = ({ loginUser }) => {
               What brand is this from?
             </p>
             <input
-              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
+              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif bg-gray-100"
               type="text"
               {...register("brand", { required: true })}
             />
@@ -118,7 +118,7 @@ const ImageUploader = ({ loginUser }) => {
               And it's perfect for what occasion?
             </p>
             <input
-              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
+              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif bg-gray-100"
               type="text"
               {...register("occasion", { required: true })}
             />
@@ -127,7 +127,7 @@ const ImageUploader = ({ loginUser }) => {
               How do you feel when you wear it - one word.
             </p>
             <input
-              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
+              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif bg-gray-100"
               type="text"
               {...register("feelings", { required: true })}
             />
@@ -136,7 +136,7 @@ const ImageUploader = ({ loginUser }) => {
               Take a snapshot
             </p>
             <input
-              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif"
+              class="lg:text-xl md:text-xl sm:text-xl text-base font-serif bg-gray-100"
               type="file"
               onChange={handleFileInputChange}
             />
