@@ -6,7 +6,13 @@ module.exports = {
     "./static/**/*.js",
     "./store/**/*.js",
   ],
-  theme: {},
+  theme: {
+    extend: {
+      outline: {
+        blue: '2px solid #0000ff',
+      }
+    }
+  },
   variants: {},
   plugins: []
 };

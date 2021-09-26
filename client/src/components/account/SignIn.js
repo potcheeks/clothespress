@@ -79,17 +79,23 @@ const SignIn = ({setLoginUser, loginUser}) => {
               <input
                 type="text"
                 {...register("username", { required: true })}
+                className="bg-gray-100"
               />{" "}
               <p className="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4">
                 Email
               </p>
-              <input type="email" {...register("email", { required: true })} />{" "}
+              <input 
+              type="email" 
+              {...register("email", { required: true })}
+              className="bg-gray-100"
+              />{" "}
               <p className="lg:text-xl md:text-xl sm:text-xl text-base font-serif mb-4">
                 Password
               </p>
               <input
                 type="password"
                 {...register("password", { required: true })}
+                className="bg-gray-100"
               />{" "}
               <br />
               <br />
